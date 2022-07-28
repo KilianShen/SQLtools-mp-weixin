@@ -6,3 +6,9 @@ declare module '*.vue' {
   const component: DefineComponent<{}, {}, any>
   export default component
 }
+declare interface IObject {
+  [key: string]: any;
+}
+
+/** 微信原生API实例 */
+declare const wx:IObject;
