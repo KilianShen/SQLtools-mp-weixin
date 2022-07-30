@@ -67,7 +67,6 @@ export default defineComponent({
 
   methods: {
     goToPage(e: IObject) {
-      console.log("e", e.detail);
       const { index } = e.detail;
       const path = this.list[index].path;
       if (!path) {
@@ -76,8 +75,7 @@ export default defineComponent({
       wx.navigateTo({
         url: `${path}`,
         success: () => {
-          let pages = getCurrentPages();
-          console.info("navigateToSuccess! PageStack>>", getCurrentPages());
+          console.info("navigateToSuccess! PageStack>>", ...getCurrentPages());
         },
         fail: (e: any) => {
           console.error(e);
