@@ -29,6 +29,7 @@ export default defineComponent({
           name: "手持弹幕",
           type: "chatbubble-filled",
           color: "#5dd88d",
+          path: "/tools/barrage/barrage",
         },
         {
           name: "尺子",

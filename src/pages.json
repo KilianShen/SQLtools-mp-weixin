@@ -19,6 +19,26 @@
 			}
 		}
 	],
+	"subpackages": [
+		{
+			"root": "tools",
+			"pages": [
+				{
+					"path": "barrage/barrage",
+					"style": {
+						"navigationBarTitleText": "barrage"
+					}
+				},
+				{
+					"path": "barrage/barrageScreen",
+					"style": {
+						"navigationBarTitleText": "barrageScreen",
+						"navigationStyle": "custom"
+					}
+				}
+			]
+		}
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
