@@ -1,10 +1,17 @@
 <template>
-  <text>请输入弹幕内容</text>
+  <!-- <text>请输入弹幕内容</text> -->
   <input class="input" auto-focus placeholder="请输入弹幕内容" @input="input" />
   <text>文字大小</text>
   <slider @change="sizeChange" min="20" max="50" :value="30" show-value />
   <text>滚动速度</text>
-  <slider @change="speedChange" min="2" max="8" :value="5" show-value />
+  <slider
+    @change="speedChange"
+    min="2"
+    max="8"
+    :value="5"
+    step="1"
+    show-value
+  />
   <text>选择颜色</text>
   <view class="picker">
     <view @click="openTextColorPicker" class="picker_item">
@@ -17,19 +24,19 @@
     <view @click="openBackgroundColorPicker" class="picker_item">
       <view
         class="picker_item_ridio"
-        :style="{ background: `${setting.backgroundColor}` }"
+        :style="{
+          background: `${setting.backgroundColor}`,
+        }"
       ></view
       ><text>背景色</text>
     </view>
   </view>
   <ColorPicker
     ref="textColorPicker"
-    :color="color"
     @confirm="textColorPikcerConfirm"
   ></ColorPicker>
   <ColorPicker
     ref="backgroundColorPicker"
-    :color="color"
     @confirm="backgroundColorPikcerConfirm"
   ></ColorPicker>
 
@@ -51,15 +58,15 @@
 import ColorPicker from "@/widgets/wxy-color-picker_0.0.4/components/wxy-color-picker/wxy-color-picker.vue";
 import { onMounted, ref, reactive } from "vue";
 import { RouteUtils } from "@/utils/RouteUtils";
-const color = { r: 122, g: 189, b: 154, a: 1 };
+// const color = { r: 122, g: 189, b: 154, a: 1 };
 let textColorPicker: any = ref(null);
 let backgroundColorPicker: any = ref(null);
 
 const setting = reactive({
   text: "(^_^)",
   fontSize: 300,
-  rollSpeed: 5,
-  textColor: "#13ba00",
+  rollSpeed: "5s",
+  textColor: "#6000ba",
   backgroundColor: "#000",
   isRolling: 0,
 });
@@ -69,7 +76,7 @@ const sizeChange = (e: any) => {
   setting.fontSize = e.target.value * 10;
 };
 const speedChange = (e: any) => {
-  setting.rollSpeed = e.target.value;
+  setting.rollSpeed = 16 / e.target.value + "s";
 };
 
 const openTextColorPicker = (item: any) => {
@@ -100,8 +107,8 @@ const showBarrage = () => {
  * @desp rgba2Hex
  * @params {r:255,g:0,b:0,a:'0.4'}
  */
-const RGBA2HEX = (color: IObject): string => {
-  let { r, g, b, a = 1 } = color;
+const RGBA2HEX = (rgba: IObject): string => {
+  let { r, g, b, a = 1 } = rgba;
   r = Math.fround(a * parseInt(r) + (1 - a) * 255);
   g = Math.fround(a * parseInt(g) + (1 - a) * 255);
   b = Math.fround(a * parseInt(b) + (1 - a) * 255);
@@ -112,12 +119,11 @@ const RGBA2HEX = (color: IObject): string => {
     b.toString(16).slice(-2);
   return hex;
 };
+</script>    
 
-color;
-</script>
-    
 <style lang="scss" scoped>
 .input {
+  margin-top: 30rpx;
   border-bottom: 6rpx solid #7abd9a;
 }
 .picker {

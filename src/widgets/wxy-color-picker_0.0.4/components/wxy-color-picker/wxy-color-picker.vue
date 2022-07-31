@@ -196,7 +196,7 @@ export default {
           r: 0,
           g: 0,
           b: 0,
-          a: 0,
+          a: 1,
         };
       },
     },
@@ -539,7 +539,7 @@ export default {
         });
         this.setColor();
       } else {
-        this.rgba.a = (x / width).toFixed(1);
+        this.rgba.a = parseFloat((x / width).toFixed(1));
       }
       this.setValue(this.rgba);
     },
