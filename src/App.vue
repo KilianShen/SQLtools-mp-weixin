@@ -10,4 +10,7 @@ onHide(() => {
   console.log("App Hide");
 });
 </script>
-<style></style>
+<style lang="scss">
+// iconfont
+@import "@/static/iconfont/iconfont.css";
+</style>

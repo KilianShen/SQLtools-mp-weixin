@@ -11,4 +11,7 @@ declare interface IObject {
 }
 
 /** 微信原生API实例 */
-declare const wx:IObject;
+declare const wx: IObject;
+
+declare module "*.js";
+

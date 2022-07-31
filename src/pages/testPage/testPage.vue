@@ -1,4 +1,8 @@
-<template></template>
+<template>
+  <i class="iconfont icon-chizi"></i>
+  <i class="iconfont icon-bofangqi-danmuzitixiao"></i>
+  <i class="iconfont icon-xiugai"></i>
+</template>
     
 <script lang='ts' setup>
 import { onMounted, reactive, toRefs } from "vue";
