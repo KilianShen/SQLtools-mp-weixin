@@ -56,9 +56,9 @@
         },
         "usingComponents": true,
         "requiredPrivateInfos": [
-            "getLocation",
             "chooseLocation",
-            "getFuzzyLocation"
+            // "getLocation",
+            // "getFuzzyLocation"
         ],
         "permission": {
             "scope.userLocation": {

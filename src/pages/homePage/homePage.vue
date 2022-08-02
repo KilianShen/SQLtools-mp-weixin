@@ -12,8 +12,11 @@
         :key="index"
         :index="index"
       >
+        <i
+          :class="`iconfont icon-${item.icon}`"
+          :style="`color:${item.color};font-size:80rpx`"
+        ></i>
         <text class="text">{{ item.name }}</text>
-        <uni-icons :type="item.type" size="40" :color="item.color"> </uni-icons>
       </uni-grid-item>
     </uni-grid>
   </view>
@@ -27,44 +30,50 @@ export default defineComponent({
       list: [
         {
           name: "手持弹幕",
-          type: "chatbubble-filled",
+          icon: "shuzi",
           color: "#5dd88d",
           path: "/packageTools/tools/barrage/barrage",
         },
         {
-          name: "尺子",
-          type: "settings",
+          name: "天气",
+          icon: "tianqi",
           color: "#5dd88d",
-        },
-        {
-          name: "图片水印",
-          type: "image-filled",
-          color: "#5dd88d",
-        },
-        {
-          name: "九格切图",
-          type: "images-filled",
-          color: "#5dd88d",
-        },
-        {
-          name: "二维码工具",
-          type: "scan",
-          color: "#5dd88d",
-        },
-        {
-          name: "地址信息查询",
-          type: "location",
-          color: "#5dd88d",
+          path: "/packageTools/tools/weather/weather",
         },
         {
           name: "屏幕时间",
-          type: "location",
+          icon: "Digital-AlarmClock",
           color: "#5dd88d",
           path: "/packageTools/tools/screenTime/screenTime",
         },
         {
+          name: "尺子",
+          icon: "kaifa",
+          color: "#5dd88d",
+        },
+        {
+          name: "图片水印",
+          icon: "kaifa",
+          color: "#5dd88d",
+        },
+        {
+          name: "九格切图",
+          icon: "kaifa",
+          color: "#5dd88d",
+        },
+        {
+          name: "二维码工具",
+          icon: "kaifa",
+          color: "#5dd88d",
+        },
+        {
+          name: "地址信息查询",
+          icon: "kaifa",
+          color: "#5dd88d",
+        },
+        {
           name: "testPage",
-          type: "more-filled",
+          icon: "kaifa",
           color: "#5dd88d",
           path: "/packageTools/testPage/testPage",
         },

@@ -6,6 +6,41 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "3114162",
+      "name": "开发",
+      "font_class": "kaifa",
+      "unicode": "e733",
+      "unicode_decimal": 59187
+    },
+    {
+      "icon_id": "1305483",
+      "name": "数字",
+      "font_class": "shuzi",
+      "unicode": "e641",
+      "unicode_decimal": 58945
+    },
+    {
+      "icon_id": "6805614",
+      "name": "时间系列",
+      "font_class": "Digital-AlarmClock",
+      "unicode": "e9c0",
+      "unicode_decimal": 59840
+    },
+    {
+      "icon_id": "9626944",
+      "name": "天气",
+      "font_class": "tianqi",
+      "unicode": "e87f",
+      "unicode_decimal": 59519
+    },
+    {
+      "icon_id": "10949530",
+      "name": "时间器",
+      "font_class": "shijianqi",
+      "unicode": "e668",
+      "unicode_decimal": 58984
+    },
+    {
       "icon_id": "2076418",
       "name": "修改",
       "font_class": "xiugai",

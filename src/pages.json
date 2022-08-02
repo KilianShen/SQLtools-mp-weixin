@@ -24,6 +24,12 @@
 					}
 				},
 				{
+					"path": "tools/weather/weather",
+					"style": {
+						"navigationBarTitleText": "天气"
+					}
+				},
+				{
 					"path": "tools/barrage/barrageScreen",
 					"style": {
 						"navigationStyle": "custom"
