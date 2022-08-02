@@ -57,6 +57,12 @@ export default defineComponent({
           color: "#5dd88d",
         },
         {
+          name: "屏幕时间",
+          type: "location",
+          color: "#5dd88d",
+          path: "/packageTools/tools/screenTime/screenTime",
+        },
+        {
           name: "testPage",
           type: "more-filled",
           color: "#5dd88d",

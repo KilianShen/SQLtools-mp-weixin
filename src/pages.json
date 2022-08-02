@@ -31,6 +31,14 @@
 					}
 				},
 				{
+					"path": "tools/screenTime/screenTime",
+					"style": {
+						"navigationBarTitleText": "screenTime",
+						"navigationStyle": "custom",
+						"pageOrientation": "landscape"
+					}
+				},
+				{
 					"path": "testPage/testPage",
 					"style": {
 						"navigationBarTitleText": "testPage"

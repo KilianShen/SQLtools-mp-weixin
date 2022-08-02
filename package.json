@@ -55,6 +55,7 @@
     "@dcloudio/uni-cli-shared": "3.0.0-alpha-3040820220424001",
     "@dcloudio/vite-plugin-uni": "3.0.0-alpha-3040820220424001",
     "@types/mockjs": "^1.0.6",
+    "dayjs": "^1.11.4",
     "mockjs": "^1.1.0",
     "sass": "^1.54.0",
     "sass-loader": "^13.0.2",
