@@ -7,33 +7,33 @@
 			}
 		},
 		{
-			"path": "pages/index/index",
+			"path": "pages/mine/mine",
 			"style": {
 				"navigationBarTitleText": "mine"
-			}
-		},
-		{
-			"path": "pages/testPage/testPage",
-			"style": {
-				"navigationBarTitleText": "testPage"
 			}
 		}
 	],
 	"subpackages": [
 		{
-			"root": "tools",
+			"root": "packageTools",
 			"pages": [
 				{
-					"path": "barrage/barrage",
+					"path": "tools/barrage/barrage",
 					"style": {
 						"navigationBarTitleText": "barrage"
 					}
 				},
 				{
-					"path": "barrage/barrageScreen",
+					"path": "tools/barrage/barrageScreen",
 					"style": {
 						"navigationBarTitleText": "barrageScreen",
 						"navigationStyle": "custom"
+					}
+				},
+				{
+					"path": "testPage/testPage",
+					"style": {
+						"navigationBarTitleText": "testPage"
 					}
 				}
 			]

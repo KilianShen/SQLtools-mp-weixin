@@ -10,5 +10,9 @@ export function RouteUtils(path: string, params?: IObject, mode?: string) {
     const routeName = path + '?' + Object.keys(_params).map((key) => { return `${key}=${_params[key]}` }).join('&');
     wx.navigateTo({
         url: routeName,
+        success: () => { },
+        fail: (e: any) => {
+            console.error('RouteUtils', e)
+        }
     });
 }

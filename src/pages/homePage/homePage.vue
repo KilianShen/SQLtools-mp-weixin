@@ -29,7 +29,7 @@ export default defineComponent({
           name: "手持弹幕",
           type: "chatbubble-filled",
           color: "#5dd88d",
-          path: "/tools/barrage/barrage",
+          path: "/packageTools/tools/barrage/barrage",
         },
         {
           name: "尺子",
@@ -60,7 +60,7 @@ export default defineComponent({
           name: "testPage",
           type: "more-filled",
           color: "#5dd88d",
-          path: "/pages/testPage/testPage",
+          path: "/packageTools/testPage/testPage",
         },
       ],
     };

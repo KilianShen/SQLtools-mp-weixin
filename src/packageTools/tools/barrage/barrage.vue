@@ -101,7 +101,7 @@ const radioChange = (e: any) => {
 };
 
 const showBarrage = () => {
-  RouteUtils("/tools/barrage/barrageScreen", setting);
+  RouteUtils("/packageTools/tools/barrage/barrageScreen", setting);
 };
 /**
  * @desp rgba2Hex

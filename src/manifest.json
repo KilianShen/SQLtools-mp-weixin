@@ -76,10 +76,10 @@
                     "text": "组件"
                 },
                 {
-                    "pagePath": "pages/index/index",
+                    "pagePath": "pages/mine/mine",
                     "iconPath": "static/mine_unseleted.png",
                     "selectedIconPath": "static/mine_seleted.png",
-                    "text": "我的"
+                    "text": "我"
                 }
             ]
         }
