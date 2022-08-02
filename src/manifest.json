@@ -57,11 +57,15 @@
         "usingComponents": true,
         "requiredPrivateInfos": [
             "getLocation",
-            "chooseLocation"
+            "chooseLocation",
+            "getFuzzyLocation"
         ],
         "permission": {
             "scope.userLocation": {
                 "desc": "你的位置信息将用于小程序位置接口"
+            },
+            "scope.userFuzzyLocation": {
+                "desc": "你的模糊位置信息将用于小程序位置接口"
             }
         },
         "tabBar": {

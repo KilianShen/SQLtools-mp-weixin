@@ -20,20 +20,18 @@
 				{
 					"path": "tools/barrage/barrage",
 					"style": {
-						"navigationBarTitleText": "barrage"
+						"navigationBarTitleText": "手持弹幕"
 					}
 				},
 				{
 					"path": "tools/barrage/barrageScreen",
 					"style": {
-						"navigationBarTitleText": "barrageScreen",
 						"navigationStyle": "custom"
 					}
 				},
 				{
 					"path": "tools/screenTime/screenTime",
 					"style": {
-						"navigationBarTitleText": "screenTime",
 						"navigationStyle": "custom",
 						"pageOrientation": "landscape"
 					}
