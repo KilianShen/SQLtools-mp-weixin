@@ -725,10 +725,10 @@ export default {
 }
 
 .t-header-button {
+  padding: 10px;
   display: flex;
   align-items: center;
   color: #666;
-  padding-left: 10px;
 }
 
 .t-header-button:last-child {
@@ -913,7 +913,6 @@ export default {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  justify-content: center;
   padding: 5px;
   width: 100%;
   box-sizing: border-box;
@@ -934,7 +933,7 @@ export default {
 .t-select {
   flex-shrink: 0;
   width: 4em;
-  padding: 0 10px;
+  padding: 3px 10px;
 }
 
 .t-select .t-result__box-input {
