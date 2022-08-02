@@ -22,7 +22,11 @@ onLoad((pageParams) => {
 });
 
 onMounted(() => {
-  state.dateStrYMD = dayjs(new Date()).format("YYYY-MM-DD");
+  state.dateStrYMD = new Date()
+    .toDateString()
+    .split(" ")
+    .slice(0, -1)
+    .join(" ");
   state.dateStrHms = dayjs(new Date()).format("HH:mm:ss");
   state.timer = setInterval(() => {
     state.dateStrHms = dayjs(new Date()).format("HH:mm:ss");
@@ -50,6 +54,9 @@ onUnmounted(() => {
   }
   &_ymd {
     font-size: 30rpx;
+    position: fixed;
+    bottom: 50rpx;
+    right: 90rpx;
   }
 }
 </style>
