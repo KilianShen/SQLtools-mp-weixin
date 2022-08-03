@@ -1,7 +1,6 @@
 <template>
   <button @click="choose">choose</button>
   <view>{{ imgUrl }}</view>
-  <!-- <image :src="imgUrl"></image> -->
   <canvas type="2d" id="myCanvas" class="canvas"></canvas>
   <button @click="save()">save</button>
 </template>
@@ -13,8 +12,6 @@ import { onLoad } from "@dcloudio/uni-app";
 let imgUrl: Ref<String> = ref("");
 // Canvas 对象
 let canvas: any = reactive({});
-
-const widget = ref(null);
 
 // ===================== 生命周期 =====================
 onLoad((pageParams) => {
@@ -31,19 +28,7 @@ function choose() {
     camera: "back",
     success: (res: IObject) => {
       imgUrl.value = res.tempFiles[0].tempFilePath;
-
-      const FileSystemManager = wx.getFileSystemManager();
-      FileSystemManager.readFile({
-        filePath: imgUrl.value,
-        encoding: "base64",
-        position: 0,
-        success: (res: IObject) => {
-          draw(`data:image/gif;base64,${res.data}`);
-        },
-        fail: (res: IObject) => {
-          console.error(res);
-        },
-      });
+      draw(res.tempFiles[0].tempFilePath);
     },
   });
 }
@@ -82,8 +67,6 @@ function draw(img: Ref<String> | String) {
           }, 500);
         }
       });
-
-      console.log("canvas", canvas);
     });
 }
 
@@ -104,6 +87,29 @@ function drawImage(ctx: any, canvas: any, img: String | Ref<String>) {
 }
 
 function save() {
+  wx.getSetting({
+    success: (res: IObject) => {
+      console.log(res.authSetting);
+      if (!res.authSetting["scope.writePhotosAlbum"]) {
+        wx.authorize({
+          scope: "scope.writePhotosAlbum",
+          success: (r: IObject) => {
+            console.log("r", r);
+            canvasToTempFilePath();
+          },
+          fail: (err: IObject) => {
+            console.error("err", err);
+          },
+        });
+      } else {
+        canvasToTempFilePath();
+      }
+    },
+  });
+}
+
+function canvasToTempFilePath() {
+  console.log("canvasToTempFilePath");
   wx.canvasToTempFilePath({
     x: 0,
     y: 0,
@@ -113,17 +119,21 @@ function save() {
     destHeight: 390,
     canvas: canvas,
     success: (r: IObject) => {
-      console.log("r", r);
       const { tempFilePath = "" } = r;
       console.log("tempFilePath", tempFilePath);
-      const FileSystemManager = wx.getFileSystemManager();
-      FileSystemManager.saveFile({
-        tempFilePath: tempFilePath,
-        success: (r: IObject) => {
-          console.log("r", r);
+      wx.saveImageToPhotosAlbum({
+        filePath: tempFilePath,
+        success() {
+          wx.showToast({
+            title: "保存成功",
+          });
         },
-        fail: (e: IObject) => {
-          console.error("e", e);
+        fail(e: any) {
+          console.log("error", e);
+          wx.showToast({
+            title: "保存失败",
+            icon: "none",
+          });
         },
       });
     },
