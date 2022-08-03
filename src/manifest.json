@@ -57,7 +57,7 @@
         "usingComponents": true,
         "requiredPrivateInfos": [
             "chooseLocation",
-            // "getLocation",
+            "getLocation"
             // "getFuzzyLocation"
         ],
         "permission": {

@@ -1,98 +1,133 @@
 <template>
-  <view class="map_container">
-    <map
-      class="map"
-      id="map"
-      :longitude="state.longitude"
-      :latitude="state.latitude"
-      :scale="16"
-      :show-location="true"
-      :markers="state.markers"
-      @markertap="makertap"
-    ></map>
-  </view>
+  <button @click="choose">choose</button>
+  <view>{{ imgUrl }}</view>
+  <!-- <image :src="imgUrl"></image> -->
+  <canvas type="2d" id="myCanvas" class="canvas"></canvas>
+  <button @click="save()">save</button>
 </template>
     
 <script lang='ts' setup>
-import { onMounted, reactive, toRefs } from "vue";
+import { onMounted, reactive, Ref, ref, toRefs } from "vue";
 import { onLoad } from "@dcloudio/uni-app";
-import BMapWX from "@/libs/bmap-wx.min.js";
 // ===================== 私有属性 =====================
-const state: IObject = reactive({
-  wxMarkerData: [],
-  markers: [],
-  /**中心经度 */
-  longitude: null,
-  /**中心纬度 */
-  latitude: null,
-  rgcData: {},
-});
+let imgUrl: Ref<String> = ref("");
+// Canvas 对象
+let canvas: any = reactive({});
 
-const BMap: IObject = new BMapWX({
-  ak: "Ui916NbXZCXlGWU4i33SZArqhWWReAWK",
-});
+const widget = ref(null);
+
 // ===================== 生命周期 =====================
 onLoad((pageParams) => {
   console.info("页面参数:", pageParams);
 });
 
-onMounted(() => {
-  // wx.getLocation({
-  //   type: "wgs84",
-  //   isHighAccuracy: true,
-  //   success(res: IObject) {
-  //     console.log("res", res);
-  //     const { longitude, latitude } = res;
-  //     state.longitude = longitude;
-  //     state.latitude = latitude;
-  //   },
-  // });
-  wx.getFuzzyLocation({
-    type: "wgs84",
-    success: (res: IObject) => {
-      console.log("getFuzzyLocation res", res);
-    },
-    fail: (e: IObject) => {
-      console.error("getFuzzyLocation:error", e);
-    },
-  });
-
-  BMap.regeocoding({
-    success: (res: IObject) => {
-      console.log("res", res);
-      const { wxMarkerData } = res;
-      const { originalData } = res;
-      console.log("wxMarkerData", wxMarkerData[0].address);
-      console.log(originalData.result.addressComponent);
-      weekWeather(originalData.result.addressComponent.city);
-    },
-    fail: (e: IObject) => {
-      console.error(e);
-    },
-  });
-});
+onMounted(() => {});
 // ===================== 私有方法 =====================
+function choose() {
+  wx.chooseMedia({
+    count: 9,
+    mediaType: ["image"],
+    sourceType: ["album", "camera"],
+    camera: "back",
+    success: (res: IObject) => {
+      imgUrl.value = res.tempFiles[0].tempFilePath;
 
-function makertap(e: IObject) {
-  var id = e.markerId;
+      const FileSystemManager = wx.getFileSystemManager();
+      FileSystemManager.readFile({
+        filePath: imgUrl.value,
+        encoding: "base64",
+        position: 0,
+        success: (res: IObject) => {
+          draw(`data:image/gif;base64,${res.data}`);
+        },
+        fail: (res: IObject) => {
+          console.error(res);
+        },
+      });
+    },
+  });
 }
 
-function weekWeather(city: string) {
-  uni.request({
-    url: "https://v0.yiketianqi.com/free/week", //仅为示例，并非真实接口地址。
-    method: "GET",
-    data: {
-      appid: "51253198",
-      appsecret: "yjm3FqHb",
-      city: city.slice(0, -1),
+function draw(img: Ref<String> | String) {
+  wx.createSelectorQuery()
+    .select("#myCanvas") // 在 WXML 中填入的 id
+    .fields({ node: true, size: true })
+    .exec((res: IObject) => {
+      // Canvas 对象
+      canvas = res[0].node;
+      // 渲染上下文
+      const ctx = canvas.getContext("2d");
+      // Canvas 画布的实际绘制宽高
+      const width = res[0].width;
+      const height = res[0].height;
+      // 初始化画布大小
+      const dpr = wx.getWindowInfo().pixelRatio;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      ctx.scale(dpr, dpr);
+      // 清空画布
+      ctx.clearRect(0, 0, width, height);
+
+      drawImage(ctx, canvas, img).then((data) => {
+        if (data) {
+          setTimeout(() => {
+            // 绘制蓝色半透明正方形
+            ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
+            ctx.fillRect(0, 0, 50, 50);
+            console.log("正方形");
+
+            // 文字
+            ctx.font = "50px system-ui";
+            ctx.fillText("Hello world", 10, 50);
+          }, 500);
+        }
+      });
+
+      console.log("canvas", canvas);
+    });
+}
+
+function drawImage(ctx: any, canvas: any, img: String | Ref<String>) {
+  return new Promise<boolean>((resolve, reject) => {
+    // 图片对象
+    const image = canvas.createImage();
+    // 图片加载完成回调
+    image.onload = () => {
+      // 将图片绘制到 canvas 上
+      ctx.drawImage(image, 0, 0);
+    };
+    // 设置图片src
+    image.src = img;
+    console.log("图片绘制完成");
+    resolve(true);
+  });
+}
+
+function save() {
+  wx.canvasToTempFilePath({
+    x: 0,
+    y: 0,
+    width: 390,
+    height: 390,
+    destWidth: 390,
+    destHeight: 390,
+    canvas: canvas,
+    success: (r: IObject) => {
+      console.log("r", r);
+      const { tempFilePath = "" } = r;
+      console.log("tempFilePath", tempFilePath);
+      const FileSystemManager = wx.getFileSystemManager();
+      FileSystemManager.saveFile({
+        tempFilePath: tempFilePath,
+        success: (r: IObject) => {
+          console.log("r", r);
+        },
+        fail: (e: IObject) => {
+          console.error("e", e);
+        },
+      });
     },
-    header: {
-      "custom-header": "hello",
-    },
-    success: (res) => {
-      console.log(res.data);
-    },
-    fail: (e) => {
+    fail: (e: IObject) => {
       console.log("e", e);
     },
   });
@@ -100,13 +135,9 @@ function weekWeather(city: string) {
 </script>
     
 <style lang="scss" scoped>
-.map_container {
-  height: 300px;
-  width: 100%;
-}
-
-.map {
-  height: 100%;
-  width: 100%;
+.canvas {
+  border: 1px solid #000;
+  width: 390px;
+  height: 390px;
 }
 </style>
