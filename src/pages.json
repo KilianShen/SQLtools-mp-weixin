@@ -55,6 +55,10 @@
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"backgroundColor": "#F8F8F8",
+		"usingComponents": {
+			"t-icon": "/wxcomponents/tdesign-miniprogram/miniprogram_dist/icon/icon",
+			"van-icon": "/wxcomponents/vant-weapp/dist/icon/index"
+		}
 	}
 }
