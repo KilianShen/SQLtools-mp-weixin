@@ -51,7 +51,7 @@
     </label>
   </radio-group>
 
-  <button @click="showBarrage">显示弹幕</button>
+  <text @click="showBarrage" class="btn">显示弹幕</text>
 </template>
     
 <script setup lang='ts'>
@@ -138,5 +138,17 @@ const RGBA2HEX = (rgba: IObject): string => {
       margin-right: 30rpx;
     }
   }
+}
+
+.btn {
+  display: block;
+  width: 90%;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  background: #7abd9a;
+  margin: 30rpx 5%;
+  border-radius: 50rpx;
+  color: #fff;
 }
 </style>

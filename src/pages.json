@@ -3,13 +3,13 @@
 		{
 			"path": "pages/homePage/homePage",
 			"style": {
-				"navigationBarTitleText": "homePage"
+				"navigationBarTitleText": "工具"
 			}
 		},
 		{
 			"path": "pages/mine/mine",
 			"style": {
-				"navigationBarTitleText": "mine"
+				"navigationBarTitleText": "我"
 			}
 		}
 	],
@@ -36,6 +36,12 @@
 					}
 				},
 				{
+					"path": "tools/wordsMap/wordsMap",
+					"style": {
+						"navigationBarTitleText": "词云图"
+					}
+				},
+				{
 					"path": "tools/screenTime/screenTime",
 					"style": {
 						"navigationStyle": "custom",
@@ -51,7 +57,13 @@
 				{
 					"path": "testPage/testPage2",
 					"style": {
-						"navigationBarTitleText": "testPage2",
+						"navigationBarTitleText": "testPage2"
+					}
+				},
+				{
+					"path": "testPage/testPage3",
+					"style": {
+						"navigationBarTitleText": "testPage3"
 					}
 				}
 			]
@@ -63,8 +75,8 @@
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8",
 		"usingComponents": {
-			"van-tab": "/wxcomponents/vant-weapp/dist/tab/index",
-			"van-tabs": "/wxcomponents/vant-weapp/dist/tabs/index"
+			// "van-tab": "/wxcomponents/vant-weapp/dist/tab/index",
+			// "van-tabs": "/wxcomponents/vant-weapp/dist/tabs/index"
 		}
 	}
 }

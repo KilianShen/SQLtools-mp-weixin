@@ -6,6 +6,27 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "11671969",
+      "name": "词云",
+      "font_class": "ciyun",
+      "unicode": "e66f",
+      "unicode_decimal": 58991
+    },
+    {
+      "icon_id": "11671984",
+      "name": "词云",
+      "font_class": "ciyun1",
+      "unicode": "e672",
+      "unicode_decimal": 58994
+    },
+    {
+      "icon_id": "23043843",
+      "name": "词云图",
+      "font_class": "ciyuntu",
+      "unicode": "e7af",
+      "unicode_decimal": 59311
+    },
+    {
       "icon_id": "3114162",
       "name": "开发",
       "font_class": "kaifa",

@@ -78,7 +78,7 @@
                     "pagePath": "pages/homePage/homePage",
                     "iconPath": "static/home_fill_unseleted.png",
                     "selectedIconPath": "static/home_fill_seleted.png",
-                    "text": "组件"
+                    "text": "工具"
                 },
                 {
                     "pagePath": "pages/mine/mine",
