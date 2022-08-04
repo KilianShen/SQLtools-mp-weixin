@@ -47,6 +47,12 @@
 					"style": {
 						"navigationBarTitleText": "testPage"
 					}
+				},
+				{
+					"path": "testPage/testPage2",
+					"style": {
+						"navigationBarTitleText": "testPage2",
+					}
 				}
 			]
 		}
@@ -57,8 +63,8 @@
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8",
 		"usingComponents": {
-			// "t-icon": "/wxcomponents/tdesign-miniprogram/miniprogram_dist/icon/icon",
-			// "van-icon": "/wxcomponents/vant-weapp/dist/icon/index"
+			"van-tab": "/wxcomponents/vant-weapp/dist/tab/index",
+			"van-tabs": "/wxcomponents/vant-weapp/dist/tabs/index"
 		}
 	}
 }

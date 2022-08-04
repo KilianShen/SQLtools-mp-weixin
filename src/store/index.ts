@@ -1,12 +1,14 @@
 import { createStore } from "vuex";
+import systemInfo from "./modules/systemInfo";
 
-const state = {
-    a: 'AAA'
-}
-const actions = {}
-const mutations = {}
+const state: IObject = {
+    test: 'TESTVAL'
+};
+const actions = {};
+const mutations = {};
+const modules = { systemInfo };
 const store = createStore({
-    state, actions, mutations,
+    state, actions, mutations, modules
 })
 
 export default store;
