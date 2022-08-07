@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "start": "node src/libs/devTools.js dev && yarn run dev:mp-weixin",
+    "build": "node src/libs/devTools.js build && yarn run build:mp-weixin",
     "dev:app": "uni -p app",
     "dev:custom": "uni -p",
     "dev:h5": "uni",

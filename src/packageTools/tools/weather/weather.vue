@@ -1,16 +1,52 @@
 <template>
-  <view class="map_container">
-    <view>{{ address }}</view>
-    <text>{{ dayWth.tem }}</text>
-    <text>℃</text>
-    <view>{{ dayWth.wea }}</view>
+  <view class="page">
+    <view class="top">
+      <view>{{ address }}</view>
+      <view class="tem">
+        <view class="tem_num">{{ dayWth.tem }}</view>
+        <view class="tem_unit">℃</view>
+      </view>
+      <view class="top_wea">
+        <text>
+          {{ dayWth.wea }}
+        </text>
+        <span
+          :class="`iconfont icon-${dayWth.wea_img}`"
+          style="font-size: 80rpx"
+        ></span
+      ></view>
+    </view>
+    <view class="info">
+      <view>空气{{ airQuality(Number(dayWth.air)) }}</view>
+      <view></view>
+      <view>
+        {{ dayWth.win }} {{ dayWth.win_speed }} {{ dayWth.win_meter }}
+      </view>
+    </view>
+    <text class="info_tip">更新时间：{{ dayWth.update_time }}</text>
+
+    <view v-for="(item, idx) in weekWth.data" :key="idx" class="item">
+      <view class="item_icon">
+        <span
+          :class="`iconfont icon-${item.wea_img}`"
+          style="font-size: 60rpx"
+        ></span>
+        <text>{{ dayjs(item.date).format("MM-DD") }}</text>
+      </view>
+      <text class="item_wea">{{ item.wea }}</text>
+      <text>{{ item.tem_day }}°/{{ item.tem_night }}°</text>
+      <!-- <text>{{ item.win }}</text>
+      <text>{{ item.win_speed }}</text> -->
+    </view>
+    <text class="info_tip">更新时间：{{ weekWth.update_time }}</text>
   </view>
 </template>
     
 <script lang='ts' setup>
-import { onMounted, reactive, ref, toRefs } from "vue";
+import { onMounted, reactive, ref, toRaw, toRefs } from "vue";
 import { onLoad } from "@dcloudio/uni-app";
 import BMapWX from "@/libs/bmap-wx.min.js";
+import dayjs from "dayjs";
 // ===================== 私有属性 =====================
 let address: any = ref("");
 const state: IObject = reactive({
@@ -25,6 +61,26 @@ const BMap: IObject = new BMapWX({
 // ===================== 生命周期 =====================
 onLoad((pageParams) => {
   console.info("页面参数:", pageParams);
+  wx.getSetting({
+    success: (res: IObject) => {
+      console.log("authSetting", res);
+      if (!res.authSetting["scope.userLocation"]) {
+        console.info("没授权");
+        wx.authorize({
+          scope: "scope.userLocation",
+          success: () => {},
+          fail: (err: IObject) => {
+            console.error("err:", err);
+            wx.showToast({
+              title: "请检查位置权限是否开启",
+              icon: "none",
+              duration: 2000,
+            });
+          },
+        });
+      }
+    },
+  });
 });
 
 onMounted(() => {
@@ -55,8 +111,8 @@ function weekWeather(city: string) {
     },
     success: (res) => {
       const { data } = res;
-      console.log("weekWeather", data);
       state.weekWth = data;
+      console.log("weekWth", weekWth);
     },
     fail: (e) => {
       console.log("e", e);
@@ -75,24 +131,92 @@ function dayWeather(city: string) {
     },
     success: (res) => {
       const { data } = res;
-      console.log("dayWeather", data);
       state.dayWth = data;
+      console.log("dayWeather", dayWth);
     },
     fail: (e) => {
       console.log("e", e);
     },
   });
 }
+
+function airQuality(air: number) {
+  if (air >= 0 && air <= 50) {
+    return "优：" + air;
+  } else if (air >= 51 && air <= 100) {
+    return "良：" + air;
+  } else if (air >= 101 && air <= 150) {
+    return "轻度污染：" + air;
+  } else if (air >= 151 && air <= 200) {
+    return "中度污染：" + air;
+  } else if (air >= 201 && air <= 300) {
+    return "重度污染：" + air;
+  } else if (air > 300) {
+    return "严重污染：" + air;
+  }
+}
 </script>
     
 <style lang="scss" scoped>
-.map_container {
-  height: 300px;
+.page {
   width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: rgb(35, 127, 203);
+  color: #fff;
+}
+.top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 30rpx;
+  &_wea {
+    display: flex;
+    align-items: center;
+  }
+}
+.tem {
+  display: flex;
+  // align-items: flex-start;
+  &_num {
+    font-size: 150rpx;
+  }
+  &_unit {
+    padding-top: 25rpx;
+  }
 }
 
-.map {
-  height: 100%;
-  width: 100%;
+.info {
+  display: flex;
+  justify-content: space-between;
+  padding: 30rpx 30rpx 0;
+}
+.info_tip {
+  display: block;
+  color: #999;
+  font-size: 20rpx;
+  text-align: end;
+  margin-right: 30rpx;
+  margin-bottom: 40rpx;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10rpx 30rpx;
+  align-items: center;
+  &_icon {
+    display: flex;
+    align-items: center;
+    margin-right: 30rpx;
+    span {
+      font-size: 80rpx;
+    }
+  }
+  &_wea {
+    width: 300rpx;
+    text-align: left;
+  }
 }
 </style>

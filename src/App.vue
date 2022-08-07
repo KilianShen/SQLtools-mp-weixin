@@ -9,6 +9,7 @@ onLaunch(() => {
   // 存储SystemInfo
   wx.getSystemInfoAsync({
     success: (res: IObject) => {
+      console.log("getSystemInfoAsync", res);
       store.commit("systemInfo/SET_VALUE", res);
     },
   });

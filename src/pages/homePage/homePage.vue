@@ -46,12 +46,12 @@ export default defineComponent({
           color: "#5dd88d",
           path: "/packageTools/tools/wordsMap/wordsMap",
         },
-        // {
-        //   name: "天气",
-        //   icon: "tianqi",
-        //   color: "#5dd88d",
-        //   path: "/packageTools/tools/weather/weather",
-        // },
+        {
+          name: "天气",
+          icon: "tianqi",
+          color: "#5dd88d",
+          path: "/packageTools/tools/weather/weather",
+        },
         // {
         //   name: "尺子",
         //   icon: "kaifa",
@@ -77,18 +77,24 @@ export default defineComponent({
         //   icon: "kaifa",
         //   color: "#5dd88d",
         // },
-        // {
-        //   name: "testPage",
-        //   icon: "kaifa",
-        //   color: "#5dd88d",
-        //   path: "/packageTools/testPage/testPage",
-        // },
-        // {
-        //   name: "testPage2",
-        //   icon: "kaifa",
-        //   color: "#5dd88d",
-        //   path: "/packageTools/testPage/testPage2",
-        // },
+        {
+          name: "testPage",
+          icon: "kaifa",
+          color: "#5dd88d",
+          path: "/packageTools/testPage/testPage",
+        },
+        {
+          name: "testPage2",
+          icon: "kaifa",
+          color: "#5dd88d",
+          path: "/packageTools/testPage/testPage2",
+        },
+        {
+          name: "tabs",
+          icon: "kaifa",
+          color: "#5dd88d",
+          path: "/packageTools/testPage/testPage3",
+        },
       ],
     };
   },
@@ -114,7 +120,7 @@ export default defineComponent({
 });
 </script>
   
-<style scope lang='scss'>
+<style scoped lang='scss'>
 .grid {
   padding: 5vw;
   &_item {
