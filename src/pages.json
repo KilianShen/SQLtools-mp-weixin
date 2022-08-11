@@ -42,6 +42,12 @@
 					}
 				},
 				{
+					"path": "tools/eventHistory/eventHistory",
+					"style": {
+						"navigationBarTitleText": "历史上的今天"
+					}
+				},
+				{
 					"path": "tools/screenTime/screenTime",
 					"style": {
 						"navigationStyle": "custom",
@@ -52,12 +58,6 @@
 					"path": "testPage/testPage",
 					"style": {
 						"navigationBarTitleText": "testPage"
-					}
-				},
-				{
-					"path": "testPage/testPage2",
-					"style": {
-						"navigationBarTitleText": "testPage2"
 					}
 				},
 				{
@@ -74,9 +74,6 @@
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8",
-		"usingComponents": {
-			// "van-tab": "/wxcomponents/vant-weapp/dist/tab/index",
-			// "van-tabs": "/wxcomponents/vant-weapp/dist/tabs/index"
-		}
+		"usingComponents": {}
 	}
 }

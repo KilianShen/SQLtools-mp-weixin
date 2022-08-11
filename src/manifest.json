@@ -51,8 +51,16 @@
     /* 小程序特有相关 */
     "mp-weixin": {
         "appid": "wx577fff4dfdcf04f2",
+        "miniprogramRoot": "./",
         "setting": {
-            "urlCheck": false
+            "urlCheck": false,
+            "packNpmManually": true,
+            "packageNpmRelationList": [
+                {
+                    "packageJsonPath": "./package.json",
+                    "miniprogramNpmDistDir": "./uni_modules/"
+                }
+            ]
         },
         "usingComponents": true,
         "lazyCodeLoading": "requiredComponents",

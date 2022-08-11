@@ -18,7 +18,7 @@ onLoad((pageParams) => {
   console.info("页面参数:", pageParams);
 });
 
-onMounted(() => {});
+onMounted(() => { });
 // ===================== 私有方法 =====================
 function choose() {
   wx.chooseMedia({
@@ -29,6 +29,13 @@ function choose() {
     success: (res: IObject) => {
       imgUrl.value = res.tempFiles[0].tempFilePath;
       draw(res.tempFiles[0].tempFilePath);
+
+      wx.getImageInfo({
+        src: imgUrl.value,
+        success: (res: IObject) => {
+          console.log("getImageInfo", res);
+        },
+      });
     },
   });
 }

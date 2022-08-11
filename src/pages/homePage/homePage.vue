@@ -1,21 +1,8 @@
 <template>
   <view class="grid">
-    <uni-grid
-      :column="3"
-      :showBorder="false"
-      :square="false"
-      @change="goToPage"
-    >
-      <uni-grid-item
-        class="grid_item"
-        v-for="(item, index) in list"
-        :key="index"
-        :index="index"
-      >
-        <i
-          :class="`iconfont icon-${item.icon}`"
-          :style="`color:${item.color};font-size:80rpx`"
-        ></i>
+    <uni-grid :column="3" :showBorder="false" :square="false" @change="goToPage">
+      <uni-grid-item class="grid_item" v-for="(item, index) in list" :key="index" :index="index">
+        <i :class="`iconfont icon-${item.icon}`" :style="`color:${item.color};font-size:80rpx`"></i>
         <text class="text">{{ item.name }}</text>
       </uni-grid-item>
     </uni-grid>
@@ -52,6 +39,12 @@ export default defineComponent({
           color: "#5dd88d",
           path: "/packageTools/tools/weather/weather",
         },
+        {
+          name: "历史上的今天",
+          icon: "jintian",
+          color: "#5dd88d",
+          path: "/packageTools/tools/eventHistory/eventHistory",
+        },
         // {
         //   name: "尺子",
         //   icon: "kaifa",
@@ -77,24 +70,18 @@ export default defineComponent({
         //   icon: "kaifa",
         //   color: "#5dd88d",
         // },
-        {
-          name: "testPage",
-          icon: "kaifa",
-          color: "#5dd88d",
-          path: "/packageTools/testPage/testPage",
-        },
-        {
-          name: "testPage2",
-          icon: "kaifa",
-          color: "#5dd88d",
-          path: "/packageTools/testPage/testPage2",
-        },
-        {
-          name: "tabs",
-          icon: "kaifa",
-          color: "#5dd88d",
-          path: "/packageTools/testPage/testPage3",
-        },
+        // {
+        //   name: "testPage",
+        //   icon: "kaifa",
+        //   color: "#5dd88d",
+        //   path: "/packageTools/testPage/testPage",
+        // },
+        // {
+        //   name: "testPage3",
+        //   icon: "kaifa",
+        //   color: "#5dd88d",
+        //   path: "/packageTools/testPage/testPage3",
+        // },
       ],
     };
   },
@@ -123,6 +110,7 @@ export default defineComponent({
 <style scoped lang='scss'>
 .grid {
   padding: 5vw;
+
   &_item {
     width: 30vw;
     height: 30vw;
