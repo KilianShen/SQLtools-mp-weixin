@@ -122,7 +122,7 @@ function weekWeather(city: string) {
 
 function dayWeather(city: string) {
   uni.request({
-    url: "https://yiketianqi.com/free/day",
+    url: "https://v0.yiketianqi.com/free/day",
     method: "GET",
     data: {
       appid: "51253198",
