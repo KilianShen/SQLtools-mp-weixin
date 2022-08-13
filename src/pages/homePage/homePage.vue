@@ -70,18 +70,18 @@ export default defineComponent({
         //   icon: "kaifa",
         //   color: "#5dd88d",
         // },
-        // {
-        //   name: "testPage",
-        //   icon: "kaifa",
-        //   color: "#5dd88d",
-        //   path: "/packageTools/testPage/testPage",
-        // },
-        // {
-        //   name: "testPage3",
-        //   icon: "kaifa",
-        //   color: "#5dd88d",
-        //   path: "/packageTools/testPage/testPage3",
-        // },
+        {
+          name: "图片剪裁",
+          icon: "kaifa",
+          color: "#5dd88d",
+          path: "/packageTools/testPage/testPage3",
+        },
+        {
+          name: "testPage",
+          icon: "kaifa",
+          color: "#5dd88d",
+          path: "/packageTools/testPage/testPage",
+        },
       ],
     };
   },

@@ -1,39 +1,18 @@
 <template>
   <view class="charts-box">
-    <QiunDataCharts
-      type="word"
-      :opts="opts"
-      :chartData="chartData"
-      :canvas2d="false"
-      v-if="reshow"
-      canvasId="nxXPjSnjwsNJmwphLUTxSDOgnmfRVwQq"
-      ref="ucharts"
-    />
+    <QiunDataCharts type="word" :opts="opts" :chartData="chartData" :canvas2d="false" v-if="reshow"
+      canvasId="nxXPjSnjwsNJmwphLUTxSDOgnmfRVwQq" ref="ucharts" />
   </view>
   <view class="tagBox">
     <view v-for="(item, idx) in chartData.series" :key="idx" class="tagBox_tag">
       {{ item.name }}
-      <uni-icons
-        type="clear"
-        size="20"
-        class="tagBox_close"
-        color="#999"
-        @click="delTag(idx)"
-      ></uni-icons>
+      <uni-icons type="clear" size="20" class="tagBox_close" color="#999" @click="delTag(idx)"></uni-icons>
     </view>
   </view>
   <view class="inputBox">
     <uni-icons type="trash-filled" @click="delAll" size="25"></uni-icons>
-    <input
-      maxlength="10"
-      type="text"
-      confirm-type="done"
-      placeholder="最大输入长度为10"
-      v-model="inputVal"
-      @input="input"
-      @confirm="confirm"
-      class="input"
-    />
+    <input maxlength="10" type="text" confirm-type="done" placeholder="最大输入长度为10" v-model="inputVal" @confirm="confirm"
+      class="input" />
   </view>
   <text @click="save" class="btn">保存图片</text>
 </template>
@@ -137,6 +116,7 @@ function save() {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+
   &_tag {
     margin: 10rpx;
     padding: 0rpx 20rpx;
@@ -145,6 +125,7 @@ function save() {
     font-size: 25rpx;
     position: relative;
   }
+
   &_close {
     position: absolute;
     right: -15rpx;

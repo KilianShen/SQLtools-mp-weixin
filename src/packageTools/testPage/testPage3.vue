@@ -1,49 +1,50 @@
 <template>
   <view class="page-section">
-    <view class="page-section-title">剪裁</view>
     <button @click="choose">chooseImage</button>
+    <button @click="save">save</button>
 
-    <movable-area
-      v-if="show"
-      scale-area
-      class="movableArea"
-      :style="{ height: `${scaleHeight}px`, width: `${scaleWidth}px` }"
-    >
-      <image
-        :src="originalImg"
-        :style="{ height: `${scaleHeight}px`, width: `${scaleWidth}px` }"
-      ></image>
-      <movable-view
-        direction="all"
-        @change="onChange"
-        @scale="onScale"
-        scale
-        scale-min="0.5"
-        scale-max="4"
-        scale-value="1"
-        class="movableView"
-      >
+    <movable-area v-if="state.show" scale-area class="movableArea"
+      :style="{ height: `${state.scaleHeight}px`, width: `${state.scaleWidth}px` }">
+      <image :src="state.originalImg" :style="{ height: `${state.scaleHeight}px`, width: `${state.scaleWidth}px` }">
+      </image>
+      <movable-view direction="all" @change="onChange" @scale="onScale" scale scale-min="0.5"
+        :scale-max="state.scaleMax" :x="state.movableX" :y="state.movableY" class="movableView"
+        :style="{ height: `${state.clipSize}px`, width: `${state.clipSize}px` }">
       </movable-view>
     </movable-area>
+
+    <canvas class="canvas" type="2d" id="canvasImg"
+      :style="{ width: `${state.scaleWidth}px`, height: `${state.scaleHeight}px` }">
+    </canvas>
   </view>
 </template>
     
 <script lang='ts' setup>
-import { onMounted, reactive, toRefs, ref, Ref } from "vue";
+import { onMounted, reactive, ref, Ref, toRefs } from "vue";
 import { onLoad } from "@dcloudio/uni-app";
 import store from "@/store";
 // ===================== 私有属性 =====================
-let originalImg: Ref<string> = ref("");
-let scaleWidth: Ref<number> | number = ref(0);
-let scaleHeight: Ref<number> | number = ref(0);
-let show = ref(false);
+const state = reactive({
+  originalImg: '',
+  scaleWidth: 0,
+  scaleHeight: 0,
+  scaleMax: 1,
+  clipSize: 200,
+  show: false,
+  movableX: 0,
+  movableY: 0,
+  movableScale: 1,
+})
+
+// Canvas 对象
+let canvas: any = reactive({});
 
 // ===================== 生命周期 =====================
 onLoad((pageParams) => {
   console.info("页面参数:", pageParams);
 });
 
-onMounted(() => {});
+onMounted(() => { });
 // ===================== 私有方法 =====================
 function choose() {
   wx.chooseMedia({
@@ -53,36 +54,88 @@ function choose() {
     camera: "back",
     success: (res: IObject) => {
       let src = res.tempFiles[0].tempFilePath;
-      originalImg.value = res.tempFiles[0].tempFilePath;
+      state.originalImg = res.tempFiles[0].tempFilePath;
       wx.getImageInfo({
         src: src,
         success: (res: IObject) => {
-          console.log("getImageInfo", res);
-          scaleWidth = store.state.systemInfo.systemInfoVal.windowWidth;
-          // scaleHeight = res.height * (scaleWidth / res.width);
-          console.log("scaleWidth", scaleWidth, "scaleHeight", scaleHeight);
-          show.value = true;
+          // 图片缩放到屏宽显示
+          state.scaleWidth = store.state.systemInfo.systemInfoVal.windowWidth;
+          state.scaleHeight = Math.round(res.height * (state.scaleWidth / res.width));
+          state.clipSize = state.scaleHeight > 200 ? 200 : state.scaleHeight;
+          state.scaleMax = Math.min(state.scaleWidth / state.clipSize, state.scaleHeight / state.clipSize);
+          console.log("scaleWidth", state.scaleWidth, "scaleHeight", state.scaleHeight, 'scaleMax', state.scaleMax);
+          // 剪裁框置中
+          state.movableX = (state.scaleWidth - state.clipSize) / 2;
+          state.movableY = (state.scaleHeight - state.clipSize) / 2;
+          state.show = true;
+
+          const query = wx.createSelectorQuery()
+          query.select('#canvasImg')
+            .fields({ node: true, size: true })
+            .exec((res: IObject) => {
+              canvas = res[0].node
+              const ctx = canvas.getContext('2d')
+              canvas.width = state.scaleWidth;
+              canvas.height = state.scaleHeight;
+              // 图片对象
+              const image = canvas.createImage()
+              // 图片加载完成回调
+              image.onload = () => {
+                // 将图片绘制到 canvas 上
+                ctx.drawImage(image, 0, 0, state.scaleWidth, state.scaleHeight)
+              }
+              // 设置图片src
+              image.src = src;
+            })
         },
       });
     },
   });
 }
 
-function onChange(e: IObject) {
-  console.log(e.detail);
+function save() {
+  wx.canvasToTempFilePath({
+    x: state.movableX,
+    y: state.movableY,
+    width: state.clipSize * state.movableScale,
+    height: state.clipSize * state.movableScale,
+    canvas: canvas,
+    success: (res: IObject) => {
+      wx.saveImageToPhotosAlbum({
+        filePath: res.tempFilePath,
+        success: (res: IObject) => {
+          console.log('save success', res);
+        },
+        fail: (err: any) => {
+          console.error('err:', err);
+        }
+      })
+    }
+  })
+
 }
 
+/** 剪裁框位置改变 */
+function onChange(e: IObject) {
+  state.movableX = e.detail.x;
+  state.movableY = e.detail.y;
+}
+/** 剪裁框缩放 */
 function onScale(e: IObject) {
-  console.log(e.detail);
+  state.movableX = e.detail.x;
+  state.movableY = e.detail.y;
+  state.movableScale = e.detail.scale || 1;
 }
 </script>
     
 <style lang="scss" scoped>
-.movableArea {
-}
 .movableView {
-  background: rgba($color: #fff, $alpha: 0.5);
-  height: 100px;
-  width: 100px;
+  box-sizing: border-box;
+  border: 2px solid #5dd88d;
+}
+
+.canvas {
+  // display: none;
+  // opacity: 0;
 }
 </style>
