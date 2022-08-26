@@ -52,21 +52,6 @@ export default defineComponent({
           path: "/packageTools/tools/translate/translate",
         },
         // {
-        //   name: "尺子",
-        //   icon: "kaifa",
-        //   color: "#5dd88d",
-        // },
-        // {
-        //   name: "图片水印",
-        //   icon: "kaifa",
-        //   color: "#5dd88d",
-        // },
-        // {
-        //   name: "九格切图",
-        //   icon: "kaifa",
-        //   color: "#5dd88d",
-        // },
-        // {
         //   name: "二维码工具",
         //   icon: "kaifa",
         //   color: "#5dd88d",

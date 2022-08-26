@@ -1,5 +1,6 @@
 <template>
-
+  <van-button type="info">信息按钮</van-button>
+  <van-button type="warning">警告按钮</van-button>
 </template>
     
 <script lang='ts' setup>

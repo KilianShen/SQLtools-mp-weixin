@@ -55,12 +55,16 @@
         "setting": {
             "urlCheck": false,
             "packNpmManually": true,
+            "minified": true,
             "packageNpmRelationList": [
                 {
                     "packageJsonPath": "./package.json",
                     "miniprogramNpmDistDir": "./uni_modules/"
                 }
             ]
+        },
+        "optimization": {
+            "subPackages": true
         },
         "usingComponents": true,
         "lazyCodeLoading": "requiredComponents",
