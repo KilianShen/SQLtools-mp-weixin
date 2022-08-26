@@ -27,7 +27,7 @@ let chartData: IObject = reactive(
   Mock.mock({
     "series|10": [
       {
-        name: () => Mock.Random.ctitle(2, 7),
+        name: () => Mock.Random.word(),
         textSize: () => Mock.Random.integer(10, 30),
       },
     ],

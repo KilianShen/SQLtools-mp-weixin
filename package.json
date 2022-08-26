@@ -46,6 +46,7 @@
     "@dcloudio/uni-mp-toutiao": "3.0.0-alpha-3040820220424001",
     "@dcloudio/uni-mp-weixin": "3.0.0-alpha-3040820220424001",
     "@dcloudio/uni-quickapp-webview": "3.0.0-alpha-3040820220424001",
+    "mitt": "^3.0.0",
     "vue": "^3.2.37",
     "vue-i18n": "^9.1.9",
     "vuex": "^4.0.2"
@@ -56,10 +57,12 @@
     "@dcloudio/uni-cli-shared": "3.0.0-alpha-3040820220424001",
     "@dcloudio/vite-plugin-uni": "3.0.0-alpha-3040820220424001",
     "@types/mockjs": "^1.0.6",
+    "crypto-js": "^4.1.1",
     "dayjs": "^1.11.4",
     "mockjs": "^1.1.0",
     "sass": "^1.54.0",
     "sass-loader": "^13.0.2",
+    "tdesign-miniprogram": "^0.19.1",
     "typescript": "^4.7.4",
     "vite": "^2.9.14"
   }

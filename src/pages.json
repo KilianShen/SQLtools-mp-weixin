@@ -55,6 +55,18 @@
 					}
 				},
 				{
+					"path": "tools/translate/translate",
+					"style": {
+						"navigationBarTitleText": "翻译"
+					}
+				},
+				{
+					"path": "tools/translate/langSelt",
+					"style": {
+						"navigationBarTitleText": "选择语言"
+					}
+				},
+				{
 					"path": "testPage/testPage",
 					"style": {
 						"navigationBarTitleText": "testPage"
@@ -64,6 +76,12 @@
 					"path": "testPage/testPage3",
 					"style": {
 						"navigationBarTitleText": "testPage3"
+					}
+				},
+				{
+					"path": "testPage/testWeb",
+					"style": {
+						"navigationBarTitleText": "testWeb"
 					}
 				}
 			]

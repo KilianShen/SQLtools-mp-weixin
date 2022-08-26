@@ -10,11 +10,8 @@
         <text>
           {{ dayWth.wea }}
         </text>
-        <span
-          :class="`iconfont icon-${dayWth.wea_img}`"
-          style="font-size: 80rpx"
-        ></span
-      ></view>
+        <span :class="`iconfont icon-${dayWth.wea_img}`" style="font-size: 80rpx"></span>
+      </view>
     </view>
     <view class="info">
       <view>空气{{ airQuality(Number(dayWth.air)) }}</view>
@@ -27,10 +24,7 @@
 
     <view v-for="(item, idx) in weekWth.data" :key="idx" class="item">
       <view class="item_icon">
-        <span
-          :class="`iconfont icon-${item.wea_img}`"
-          style="font-size: 60rpx"
-        ></span>
+        <span :class="`iconfont icon-${item.wea_img}`" style="font-size: 60rpx"></span>
         <text>{{ dayjs(item.date).format("MM-DD") }}</text>
       </view>
       <text class="item_wea">{{ item.wea }}</text>
@@ -68,7 +62,7 @@ onLoad((pageParams) => {
         console.info("没授权");
         wx.authorize({
           scope: "scope.userLocation",
-          success: () => {},
+          success: () => { },
           fail: (err: IObject) => {
             console.error("err:", err);
             wx.showToast({
@@ -165,23 +159,28 @@ function airQuality(air: number) {
   background: rgb(35, 127, 203);
   color: #fff;
 }
+
 .top {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding-top: 30rpx;
+
   &_wea {
     display: flex;
     align-items: center;
   }
 }
+
 .tem {
   display: flex;
+
   // align-items: flex-start;
   &_num {
     font-size: 150rpx;
   }
+
   &_unit {
     padding-top: 25rpx;
   }
@@ -192,6 +191,7 @@ function airQuality(air: number) {
   justify-content: space-between;
   padding: 30rpx 30rpx 0;
 }
+
 .info_tip {
   display: block;
   color: #999;
@@ -206,14 +206,17 @@ function airQuality(air: number) {
   justify-content: space-between;
   padding: 10rpx 30rpx;
   align-items: center;
+
   &_icon {
     display: flex;
     align-items: center;
     margin-right: 30rpx;
+
     span {
       font-size: 80rpx;
     }
   }
+
   &_wea {
     width: 300rpx;
     text-align: left;

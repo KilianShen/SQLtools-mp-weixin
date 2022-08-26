@@ -6,6 +6,48 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "1407",
+      "name": "新生儿",
+      "font_class": "xinshenger",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "1173244",
+      "name": "热点事件00",
+      "font_class": "redianshijian",
+      "unicode": "e6ec",
+      "unicode_decimal": 59116
+    },
+    {
+      "icon_id": "1927581",
+      "name": "操作-翻译",
+      "font_class": "fanyi",
+      "unicode": "e6ba",
+      "unicode_decimal": 59066
+    },
+    {
+      "icon_id": "3588585",
+      "name": "蜡烛",
+      "font_class": "lazhu",
+      "unicode": "e700",
+      "unicode_decimal": 59136
+    },
+    {
+      "icon_id": "6652251",
+      "name": "exchange",
+      "font_class": "exchange",
+      "unicode": "e6c1",
+      "unicode_decimal": 59073
+    },
+    {
+      "icon_id": "8897354",
+      "name": "复制",
+      "font_class": "fuzhi",
+      "unicode": "e67b",
+      "unicode_decimal": 59003
+    },
+    {
       "icon_id": "4784096",
       "name": "今天",
       "font_class": "jintian",

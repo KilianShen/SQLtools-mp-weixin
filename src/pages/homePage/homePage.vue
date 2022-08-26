@@ -2,7 +2,7 @@
   <view class="grid">
     <uni-grid :column="3" :showBorder="false" :square="false" @change="goToPage">
       <uni-grid-item class="grid_item" v-for="(item, index) in list" :key="index" :index="index">
-        <i :class="`iconfont icon-${item.icon}`" :style="`color:${item.color};font-size:80rpx`"></i>
+        <view :class="`iconfont icon-${item.icon}`" :style="`color:${item.color};font-size:80rpx`"></view>
         <text class="text">{{ item.name }}</text>
       </uni-grid-item>
     </uni-grid>
@@ -44,6 +44,12 @@ export default defineComponent({
           icon: "jintian",
           color: "#5dd88d",
           path: "/packageTools/tools/eventHistory/eventHistory",
+        },
+        {
+          name: "翻译",
+          icon: "fanyi",
+          color: "#5dd88d",
+          path: "/packageTools/tools/translate/translate",
         },
         // {
         //   name: "尺子",
