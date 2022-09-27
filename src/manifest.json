@@ -63,6 +63,8 @@
                 }
             ]
         },
+        "darkmode": true,
+        "themeLocation": "theme.json",
         "optimization": {
             "subPackages": true
         },
@@ -80,7 +82,7 @@
         "tabBar": {
             "color": "#999999",
             "selectedColor": "#000000",
-            "backgroundColor": "#ecfcee",
+            "backgroundColor": "@bgColor",
             "list": [
                 {
                     "pagePath": "pages/homePage/homePage",

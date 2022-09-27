@@ -62,13 +62,18 @@ function eventsOnHistory(month: string, day: string) {
     -21rpx -21rpx 42rpx #a7ffd4;
 }
 
+@media (prefers-color-scheme: dark) {
+  .item {
+    background: #424242;
+  }
+}
+
 .item {
   margin: 30rpx;
   padding: 20rpx;
   position: relative;
 
   border-radius: 30rpx;
-  background: #fff;
   box-shadow: 20rpx 20rpx 60rpx #bebebe,
     -20rpx -20rpx 60rpx #ffffff;
 

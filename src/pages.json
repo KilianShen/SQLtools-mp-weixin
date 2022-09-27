@@ -67,6 +67,12 @@
 					}
 				},
 				{
+					"path": "tools/hotList/hotList",
+					"style": {
+						"navigationBarTitleText": "热搜榜"
+					}
+				},
+				{
 					"path": "testPage/testPage",
 					"style": {
 						"navigationBarTitleText": "testPage"
@@ -88,10 +94,10 @@
 		}
 	],
 	"globalStyle": {
-		"navigationBarTextStyle": "black",
+		"navigationBarTextStyle": "@navTxtStyle",
 		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8",
+		"navigationBarBackgroundColor": "@navBgColor",
+		"backgroundColor": "@navBgColor",
 		"usingComponents": {
 			"van-button": "/wxcomponents/vant-weapp/dist/button/index",
 		}

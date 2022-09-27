@@ -27,6 +27,16 @@ onLaunch(() => {
       },
     });
   });
+  // 微信原生监听系统主题状态变化
+  const listtener = (res: any) => {
+    console.log("wx-themeDdark", res);
+  }
+  wx.onThemeChange(listtener)
+
+  // uni监听系统主题状态变化
+  uni.onThemeChange((res) => {
+    console.log('uni-themeDdark', res);
+  });
 });
 onShow(() => {
   console.log("App Show");
@@ -34,6 +44,8 @@ onShow(() => {
 onHide(() => {
   console.log("App Hide");
 });
+// uni暂不支持App.onThemeChange
+// onThemeChange(() => {})
 </script>
 <style lang="scss">
 // iconfont
