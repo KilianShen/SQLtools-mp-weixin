@@ -73,6 +73,12 @@
 					}
 				},
 				{
+					"path": "tools/QRcode/QRcode",
+					"style": {
+						"navigationBarTitleText": "QRcode"
+					}
+				},
+				{
 					"path": "testPage/testPage",
 					"style": {
 						"navigationBarTitleText": "testPage"

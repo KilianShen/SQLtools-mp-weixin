@@ -52,6 +52,18 @@ export default defineComponent({
           path: "/packageTools/tools/translate/translate",
         },
         {
+          name: "热搜榜",
+          icon: "resou",
+          color: "#5dd88d",
+          path: "/packageTools/tools/hotList/hotList",
+        },
+        {
+          name: "QRcode",
+          icon: "erweima",
+          color: "#5dd88d",
+          path: "/packageTools/tools/QRcode/QRcode",
+        },
+        {
           name: "图片剪裁",
           icon: "kaifa",
           color: "#5dd88d",
@@ -62,12 +74,6 @@ export default defineComponent({
           icon: "kaifa",
           color: "#5dd88d",
           path: "/packageTools/testPage/testPage",
-        },
-        {
-          name: "热搜榜",
-          icon: "kaifa",
-          color: "#5dd88d",
-          path: "/packageTools/tools/hotList/hotList",
         },
       ],
     };
