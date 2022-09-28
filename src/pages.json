@@ -99,7 +99,7 @@
 		"navigationBarBackgroundColor": "@navBgColor",
 		"backgroundColor": "@navBgColor",
 		"usingComponents": {
-			"van-button": "/wxcomponents/vant-weapp/dist/button/index",
+			// "van-button": "/wxcomponents/vant-weapp/dist/button/index",
 		}
 	},
 	"easycom": {

@@ -51,16 +51,6 @@ export default defineComponent({
           color: "#5dd88d",
           path: "/packageTools/tools/translate/translate",
         },
-        // {
-        //   name: "二维码工具",
-        //   icon: "kaifa",
-        //   color: "#5dd88d",
-        // },
-        // {
-        //   name: "地址信息查询",
-        //   icon: "kaifa",
-        //   color: "#5dd88d",
-        // },
         {
           name: "图片剪裁",
           icon: "kaifa",
@@ -72,6 +62,12 @@ export default defineComponent({
           icon: "kaifa",
           color: "#5dd88d",
           path: "/packageTools/testPage/testPage",
+        },
+        {
+          name: "热搜榜",
+          icon: "kaifa",
+          color: "#5dd88d",
+          path: "/packageTools/tools/hotList/hotList",
         },
       ],
     };
