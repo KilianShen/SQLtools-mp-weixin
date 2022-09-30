@@ -1,6 +1,7 @@
 <template>
     <view class="item">
-        <view class="item_index">
+        <view
+            :class="`item_index ${item.id.startsWith('0_')?'first':item.id.startsWith('1_')?'second':item.id.startsWith('2_')?'third':''}`">
             <text>{{Number(item.id.split('_')[0])+1}}</text>
         </view>
         <view class="item_content">
@@ -41,6 +42,7 @@ onMounted(() => {
 
     &_index {
         width: 30rpx;
+        font-weight: bold;
     }
 
     &_content {
@@ -69,5 +71,17 @@ onMounted(() => {
         height: 120rpx;
         border-radius: 10rpx;
     }
+}
+
+.first {
+    color: #f00;
+}
+
+.second {
+    color: #f66a2e;
+}
+
+.third {
+    color: #d5c728;
 }
 </style>

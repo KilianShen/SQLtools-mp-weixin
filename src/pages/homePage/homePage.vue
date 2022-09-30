@@ -75,6 +75,12 @@ export default defineComponent({
           color: "#5dd88d",
           path: "/packageTools/testPage/testPage",
         },
+        {
+          name: "testPage",
+          icon: "kaifa",
+          color: "#5dd88d",
+          path: "/packageTools/testPage/testPage",
+        },
       ],
     };
   },

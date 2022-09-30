@@ -95,6 +95,13 @@
 					"style": {
 						"navigationBarTitleText": "testWeb"
 					}
+				},
+				{
+					"path": "tools/BuddhaBless/BuddhaBless",
+					"style": {
+						"navigationBarTitleText": "BuddhaBless",
+						"navigationBarBackgroundColor": "#000"
+					}
 				}
 			]
 		}
