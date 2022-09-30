@@ -9,44 +9,44 @@
     </view>
   </view>
 </template>
-    
-<script lang='ts' setup>
-import { onMounted, reactive, toRefs } from "vue";
-import { onLoad } from "@dcloudio/uni-app";
+
+<script lang="ts" setup>
+import { onMounted, reactive, toRefs } from 'vue';
+import { onLoad } from '@dcloudio/uni-app';
 // ===================== 私有属性 =====================
 const state: IObject = reactive({
-  eventList: []
-})
+  eventList: [],
+});
 // ===================== 生命周期 =====================
 onLoad((pageParams) => {
-  console.info("页面参数:", pageParams);
+  console.info('页面参数:', pageParams);
 });
 
 onMounted(() => {
   let month = ('0' + (new Date().getMonth() + 1)).slice(-2);
   let day = String(new Date().getDate());
-  console.log(month, day)
+  console.log(month, day);
   eventsOnHistory(month, day);
 });
 // ===================== 私有方法 =====================
 function eventsOnHistory(month: string, day: string) {
   wx.showLoading({
     title: '加载中',
-    mask: true
-  })
+    mask: true,
+  });
   uni.request({
     url: `https://baike.baidu.com/cms/home/eventsOnHistory/${month}.json`,
     success: (res: IObject) => {
-      state.eventList = res.data[month][`${month + day}`].reverse()
+      state.eventList = res.data[month][`${month + day}`].reverse();
       // console.log('eventList\n', JSON.stringify(state.eventList, null, 2));
     },
     complete: () => {
       wx.hideLoading();
-    }
+    },
   });
 }
 </script>
-    
+
 <style lang="scss" scoped>
 .today {
   display: block;
@@ -58,8 +58,7 @@ function eventsOnHistory(month: string, day: string) {
   color: #333;
   border-radius: 50rpx;
   background: #a9f7c7;
-  box-shadow: 21rpx 21rpx 42rpx #7bd39c,
-    -21rpx -21rpx 42rpx #a7ffd4;
+  box-shadow: 21rpx 21rpx 42rpx #7bd39c, -21rpx -21rpx 42rpx #a7ffd4;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -74,8 +73,7 @@ function eventsOnHistory(month: string, day: string) {
   position: relative;
 
   border-radius: 30rpx;
-  box-shadow: 20rpx 20rpx 60rpx #bebebe,
-    -20rpx -20rpx 60rpx #ffffff;
+  box-shadow: 20rpx 20rpx 60rpx #bebebe, -20rpx -20rpx 60rpx #ffffff;
 
   &_year {
     text-align: center;

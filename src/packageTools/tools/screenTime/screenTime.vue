@@ -4,32 +4,28 @@
     <text class="page_ymd">{{ state.dateStrYMD }}</text>
   </view>
 </template>
-    
-<script lang='ts' setup>
-import { onMounted, onUnmounted, reactive, toRefs } from "vue";
-import { onLoad } from "@dcloudio/uni-app";
-import dayjs from "dayjs";
+
+<script lang="ts" setup>
+import { onMounted, onUnmounted, reactive, toRefs } from 'vue';
+import { onLoad } from '@dcloudio/uni-app';
+import dayjs from 'dayjs';
 // ===================== 私有属性 =====================
-const state = reactive({
-  dateStrYMD: "",
-  dateStrHms: "",
+const state: IObject = reactive({
+  dateStrYMD: '',
+  dateStrHms: '',
   timer: 0,
 });
 
 // ===================== 生命周期 =====================
 onLoad((pageParams) => {
-  console.info("页面参数:", pageParams);
+  console.info('页面参数:', pageParams);
 });
 
 onMounted(() => {
-  state.dateStrYMD = new Date()
-    .toDateString()
-    .split(" ")
-    .slice(0, -1)
-    .join(" ");
-  state.dateStrHms = dayjs(new Date()).format("HH:mm:ss");
+  state.dateStrYMD = new Date().toDateString().split(' ').slice(0, -1).join(' ');
+  state.dateStrHms = dayjs(new Date()).format('HH:mm:ss');
   state.timer = setInterval(() => {
-    state.dateStrHms = dayjs(new Date()).format("HH:mm:ss");
+    state.dateStrHms = dayjs(new Date()).format('HH:mm:ss');
   }, 1000);
 });
 
@@ -38,7 +34,7 @@ onUnmounted(() => {
 });
 // ===================== 私有方法 =====================
 </script>
-    
+
 <style lang="scss" scoped>
 .page {
   background: #000;

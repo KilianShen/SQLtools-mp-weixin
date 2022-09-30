@@ -9,26 +9,26 @@
     </view>
   </view>
 </template>
-    
-<script setup lang='ts'>
-import { onMounted, reactive, toRefs, ref } from "vue";
-import { onLoad } from "@dcloudio/uni-app";
+
+<script setup lang="ts">
+import { onMounted, reactive, toRefs, ref } from 'vue';
+import { onLoad } from '@dcloudio/uni-app';
 const state: IObject = reactive({
   setting: {},
 });
 onLoad((pageParams) => {
-  console.info("页面参数:", pageParams);
+  console.info('页面参数:', pageParams);
   state.setting = pageParams;
 });
 onMounted(() => {});
 const { setting } = toRefs(state);
 </script>
-    
+
 <style lang="scss" scoped>
 .pageStatic {
   height: 100vw;
   width: 100vh;
-  background: v-bind("setting.backgroundColor");
+  background: v-bind('setting.backgroundColor');
   position: relative;
   left: 100vw;
   transform: rotate(90deg);
@@ -44,7 +44,7 @@ const { setting } = toRefs(state);
 .pageMove {
   height: 100vw;
   width: 100vh;
-  background: v-bind("setting.backgroundColor");
+  background: v-bind('setting.backgroundColor');
   position: relative;
   left: 100vw;
   transform: rotate(90deg);
@@ -53,7 +53,7 @@ const { setting } = toRefs(state);
   align-items: center;
   overflow: hidden;
   > view {
-    animation: v-bind("setting.rollSpeed") wordsLoop linear infinite normal;
+    animation: v-bind('setting.rollSpeed') wordsLoop linear infinite normal;
     display: inline-block;
     white-space: nowrap;
   }

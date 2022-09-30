@@ -8,78 +8,78 @@
     </uni-grid>
   </view>
 </template>
-  
-<script lang='ts'>
-import { defineComponent } from "@vue/runtime-core";
+
+<script lang="ts">
+import { defineComponent } from '@vue/runtime-core';
 export default defineComponent({
   data() {
     return {
       list: [
         {
-          name: "手持弹幕",
-          icon: "shuzi",
-          color: "#5dd88d",
-          path: "/packageTools/tools/barrage/barrage",
+          name: '手持弹幕',
+          icon: 'shuzi',
+          color: '#5dd88d',
+          path: '/packageTools/tools/barrage/barrage',
         },
         {
-          name: "屏幕时间",
-          icon: "Digital-AlarmClock",
-          color: "#5dd88d",
-          path: "/packageTools/tools/screenTime/screenTime",
+          name: '屏幕时间',
+          icon: 'Digital-AlarmClock',
+          color: '#5dd88d',
+          path: '/packageTools/tools/screenTime/screenTime',
         },
         {
-          name: "词云图",
-          icon: "ciyuntu",
-          color: "#5dd88d",
-          path: "/packageTools/tools/wordsMap/wordsMap",
+          name: '词云图',
+          icon: 'ciyuntu',
+          color: '#5dd88d',
+          path: '/packageTools/tools/wordsMap/wordsMap',
         },
         {
-          name: "天气",
-          icon: "tianqi",
-          color: "#5dd88d",
-          path: "/packageTools/tools/weather/weather",
+          name: '天气',
+          icon: 'tianqi',
+          color: '#5dd88d',
+          path: '/packageTools/tools/weather/weather',
         },
         {
-          name: "历史上的今天",
-          icon: "jintian",
-          color: "#5dd88d",
-          path: "/packageTools/tools/eventHistory/eventHistory",
+          name: '历史上的今天',
+          icon: 'jintian',
+          color: '#5dd88d',
+          path: '/packageTools/tools/eventHistory/eventHistory',
         },
         {
-          name: "翻译",
-          icon: "fanyi",
-          color: "#5dd88d",
-          path: "/packageTools/tools/translate/translate",
+          name: '翻译',
+          icon: 'fanyi',
+          color: '#5dd88d',
+          path: '/packageTools/tools/translate/translate',
         },
         {
-          name: "热搜榜",
-          icon: "resou",
-          color: "#5dd88d",
-          path: "/packageTools/tools/hotList/hotList",
+          name: '热搜榜',
+          icon: 'resou',
+          color: '#5dd88d',
+          path: '/packageTools/tools/hotList/hotList',
         },
         {
-          name: "QRcode",
-          icon: "erweima",
-          color: "#5dd88d",
-          path: "/packageTools/tools/QRcode/QRcode",
+          name: 'QRcode',
+          icon: 'erweima',
+          color: '#5dd88d',
+          path: '/packageTools/tools/QRcode/QRcode',
         },
         {
-          name: "图片剪裁",
-          icon: "kaifa",
-          color: "#5dd88d",
-          path: "/packageTools/testPage/testPage3",
+          name: '图片剪裁',
+          icon: 'kaifa',
+          color: '#5dd88d',
+          path: '/packageTools/testPage/testPage3',
         },
         {
-          name: "testPage",
-          icon: "kaifa",
-          color: "#5dd88d",
-          path: "/packageTools/testPage/testPage",
+          name: 'testPage',
+          icon: 'kaifa',
+          color: '#5dd88d',
+          path: '/packageTools/testPage/testPage',
         },
         {
-          name: "testPage",
-          icon: "kaifa",
-          color: "#5dd88d",
-          path: "/packageTools/testPage/testPage",
+          name: 'testPage',
+          icon: 'kaifa',
+          color: '#5dd88d',
+          path: '/packageTools/testPage/testPage',
         },
       ],
     };
@@ -95,7 +95,7 @@ export default defineComponent({
       wx.navigateTo({
         url: `${path}`,
         success: () => {
-          console.info("navigateToSuccess! PageStack>>", ...getCurrentPages());
+          console.info('navigateToSuccess! PageStack>>', ...getCurrentPages());
         },
         fail: (e: any) => {
           console.error(e);
@@ -105,8 +105,8 @@ export default defineComponent({
   },
 });
 </script>
-  
-<style scoped lang='scss'>
+
+<style scoped lang="scss">
 .grid {
   padding: 5vw;
 

@@ -1,7 +1,14 @@
 <template>
   <view class="charts-box">
-    <QiunDataCharts type="word" :opts="opts" :chartData="chartData" :canvas2d="false" v-if="reshow"
-      canvasId="nxXPjSnjwsNJmwphLUTxSDOgnmfRVwQq" ref="ucharts" />
+    <QiunDataCharts
+      type="word"
+      :opts="opts"
+      :chartData="chartData"
+      :canvas2d="false"
+      v-if="reshow"
+      canvasId="nxXPjSnjwsNJmwphLUTxSDOgnmfRVwQq"
+      ref="ucharts"
+    />
   </view>
   <view class="tagBox">
     <view v-for="(item, idx) in chartData.series" :key="idx" class="tagBox_tag">
@@ -11,21 +18,28 @@
   </view>
   <view class="inputBox">
     <uni-icons type="trash-filled" @click="delAll" size="25"></uni-icons>
-    <input maxlength="10" type="text" confirm-type="done" placeholder="最大输入长度为10" v-model="inputVal" @confirm="confirm"
-      class="input" />
+    <input
+      maxlength="10"
+      type="text"
+      confirm-type="done"
+      placeholder="最大输入长度为10"
+      v-model="inputVal"
+      @confirm="confirm"
+      class="input"
+    />
   </view>
   <text @click="save" class="btn">保存图片</text>
 </template>
-    
-<script lang='ts' setup>
-import { onMounted, reactive, toRefs, ref, watch } from "vue";
-import { onLoad } from "@dcloudio/uni-app";
-import QiunDataCharts from "@/widgets/qiun-data-charts/components/qiun-data-charts/qiun-data-charts.vue";
-import Mock from "mockjs";
+
+<script lang="ts" setup>
+import { onMounted, reactive, toRefs, ref, watch } from 'vue';
+import { onLoad } from '@dcloudio/uni-app';
+import QiunDataCharts from '@/widgets/qiun-data-charts/components/qiun-data-charts/qiun-data-charts.vue';
+import Mock from 'mockjs';
 // ===================== 私有属性 =====================
 let chartData: IObject = reactive(
   Mock.mock({
-    "series|10": [
+    'series|10': [
       {
         name: () => Mock.Random.word(),
         textSize: () => Mock.Random.integer(10, 30),
@@ -38,72 +52,72 @@ const opts = {
   padding: undefined,
   extra: {
     word: {
-      type: "normal",
+      type: 'normal',
       autoColors: false,
     },
   },
 };
 
 let reshow = ref(true);
-let inputVal = ref("");
+let inputVal = ref('');
 let ucharts: any = ref(null);
 
 watch(
   chartData,
   (newVal) => {
-    console.log("newVal", newVal);
+    console.log('newVal', newVal);
   },
   { deep: true }
 );
 // ===================== 生命周期 =====================
 onLoad((pageParams) => {
-  console.info("页面参数:", pageParams);
+  console.info('页面参数:', pageParams);
 });
 
 onMounted(() => {
-  console.log("chartData>>>>", JSON.stringify(chartData));
-  console.log("ucharts", ucharts);
+  console.log('chartData>>>>', JSON.stringify(chartData));
+  console.log('ucharts', ucharts);
 });
 // ===================== 私有方法 =====================
 function delTag(idx: number) {
-  console.log("idx", idx);
+  console.log('idx', idx);
   delete chartData.series[idx];
   chartData.series.splice(idx, 1);
 }
 
 function delAll() {
   wx.showModal({
-    title: "提示",
-    content: "确认删除所有字条？",
+    title: '提示',
+    content: '确认删除所有字条？',
     success: (res: IObject) => {
       if (res.confirm) {
-        console.log("用户点击确定");
+        console.log('用户点击确定');
         reshow.value = false;
         chartData.series = [];
         setTimeout(() => {
           reshow.value = true;
         }, 1000);
       } else if (res.cancel) {
-        console.log("用户点击取消");
+        console.log('用户点击取消');
       }
     },
   });
 }
 
 function confirm(e: IObject) {
-  console.log("e", e.target.value);
+  console.log('e', e.target.value);
   chartData.series.push({
     name: e.target.value,
     textSize: Mock.Random.integer(10, 30),
   });
-  inputVal.value = "";
+  inputVal.value = '';
 }
 
 function save() {
   ucharts.value.saveImage();
 }
 </script>
-    
+
 <style lang="scss" scoped>
 .charts-box {
   width: 100%;

@@ -4,9 +4,17 @@
       <image class="head_btn_avatar" :src="state.avatar"></image>
     </button>
     <view class="head_inputBox">
-      <input type="nickname" :value="state.nickname || state.initialName" class="head_inputBox_input"
-        placeholder="请输入昵称" :disabled="state.disabled" :focus="!state.disabled" @input="input" @blur="blur"
-        ref="input" />
+      <input
+        type="nickname"
+        :value="state.nickname || state.initialName"
+        class="head_inputBox_input"
+        placeholder="请输入昵称"
+        :disabled="state.disabled"
+        :focus="!state.disabled"
+        @input="input"
+        @blur="blur"
+        ref="input"
+      />
       <i class="iconfont icon-xiugai head_inputBox_icon" @click="edit"></i>
     </view>
   </view>
@@ -14,54 +22,53 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, reactive, ref } from "vue";
-import Mock from "mockjs";
+import { onMounted, reactive, ref } from 'vue';
+import Mock from 'mockjs';
 
 let state: IObject = reactive({
-  nickname: "",
-  initialName: "",
-  avatar:
-    "https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0",
+  nickname: '',
+  initialName: '',
+  avatar: 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0',
   disabled: true,
 });
 
 try {
-  const wx_avatar = uni.getStorageSync("wx_avatar");
-  const wx_nickname = uni.getStorageSync("wx_nickname");
-  const initialName = uni.getStorageSync("initialName");
+  const wx_avatar = uni.getStorageSync('wx_avatar');
+  const wx_nickname = uni.getStorageSync('wx_nickname');
+  const initialName = uni.getStorageSync('initialName');
   state.avatar = wx_avatar ? wx_avatar : state.avatar;
   state.nickname = wx_nickname ? wx_nickname : state.nickname;
-  console.log("state.nickname", state.nickname);
+  console.log('state.nickname', state.nickname);
   if (!wx_nickname && !initialName) {
     state.initialName = `游客_${Mock.Random.string(8)}`;
-    uni.setStorageSync("initialName", state.initialName);
+    uni.setStorageSync('initialName', state.initialName);
   } else {
     state.nickname = wx_nickname || initialName;
   }
 } catch (e) {
-  console.error("e", e);
+  console.error('e', e);
 }
 
 onMounted(() => {
-  console.log("state", state);
+  console.log('state', state);
 });
 
 function onChooseAvatar(e: IObject) {
-  console.log("e", e);
+  console.log('e', e);
   const { avatarUrl } = e.detail;
   state.avatar = avatarUrl;
   try {
-    uni.setStorageSync("wx_avatar", state.avatar);
+    uni.setStorageSync('wx_avatar', state.avatar);
   } catch (e) {
     console.error(e);
   }
 }
 
 function input(e: IObject) {
-  const { value = "" } = e.detail;
+  const { value = '' } = e.detail;
   state.nickname = value;
   try {
-    uni.setStorageSync("wx_nickname", state.nickname);
+    uni.setStorageSync('wx_nickname', state.nickname);
   } catch (e) {
     console.error(e);
   }

@@ -11,9 +11,13 @@
       <view class="picker_item_ridio" :style="{ background: `${setting.textColor}` }"></view><text>文本颜色</text>
     </view>
     <view @click="openBackgroundColorPicker" class="picker_item">
-      <view class="picker_item_ridio" :style="{
-        background: `${setting.backgroundColor}`,
-      }"></view><text>背景色</text>
+      <view
+        class="picker_item_ridio"
+        :style="{
+          background: `${setting.backgroundColor}`,
+        }"
+      ></view>
+      <text>背景色</text>
     </view>
   </view>
   <ColorPicker ref="textColorPicker" @confirm="textColorPikcerConfirm"></ColorPicker>
@@ -32,30 +36,30 @@
 
   <text @click="showBarrage" class="btn">显示弹幕</text>
 </template>
-    
-<script setup lang='ts'>
-import ColorPicker from "@/widgets/wxy-color-picker_0.0.4/components/wxy-color-picker/wxy-color-picker.vue";
-import { onMounted, ref, reactive } from "vue";
-import { Router } from "@/utils/utils"
+
+<script setup lang="ts">
+import ColorPicker from '@/widgets/wxy-color-picker_0.0.4/components/wxy-color-picker/wxy-color-picker.vue';
+import { onMounted, ref, reactive } from 'vue';
+import { Router } from '@/utils/utils';
 // const color = { r: 122, g: 189, b: 154, a: 1 };
 let textColorPicker: any = ref(null);
 let backgroundColorPicker: any = ref(null);
 
 const setting = reactive({
-  text: "(^_^)",
+  text: '(^_^)',
   fontSize: 300,
-  rollSpeed: "5s",
-  textColor: "#6000ba",
-  backgroundColor: "#000",
+  rollSpeed: '5s',
+  textColor: '#6000ba',
+  backgroundColor: '#000',
   isRolling: 0,
 });
-onMounted(() => { });
+onMounted(() => {});
 
 const sizeChange = (e: any) => {
   setting.fontSize = e.target.value * 10;
 };
 const speedChange = (e: any) => {
-  setting.rollSpeed = 16 / e.target.value + "s";
+  setting.rollSpeed = 16 / e.target.value + 's';
 };
 
 const openTextColorPicker = (item: any) => {
@@ -76,11 +80,11 @@ const input = (e: any) => {
 };
 
 const radioChange = (e: any) => {
-  setting.isRolling = e.target.value === "1" ? 1 : 0;
+  setting.isRolling = e.target.value === '1' ? 1 : 0;
 };
 
 const showBarrage = () => {
-  Router.push("/packageTools/tools/barrage/barrageScreen", setting);
+  Router.push('/packageTools/tools/barrage/barrageScreen', setting);
 };
 /**
  * @desp rgba2Hex
@@ -91,14 +95,10 @@ const RGBA2HEX = (rgba: IObject): string => {
   r = Math.fround(a * parseInt(r) + (1 - a) * 255);
   g = Math.fround(a * parseInt(g) + (1 - a) * 255);
   b = Math.fround(a * parseInt(b) + (1 - a) * 255);
-  const hex: string =
-    "#" +
-    r.toString(16).slice(-2) +
-    g.toString(16).slice(-2) +
-    b.toString(16).slice(-2);
+  const hex: string = '#' + r.toString(16).slice(-2) + g.toString(16).slice(-2) + b.toString(16).slice(-2);
   return hex;
 };
-</script>    
+</script>
 
 <style lang="scss" scoped>
 .input {

@@ -16,16 +16,14 @@
     <view class="info">
       <view>空气{{ airQuality(Number(dayWth.air)) }}</view>
       <view></view>
-      <view>
-        {{ dayWth.win }} {{ dayWth.win_speed }} {{ dayWth.win_meter }}
-      </view>
+      <view> {{ dayWth.win }} {{ dayWth.win_speed }} {{ dayWth.win_meter }} </view>
     </view>
     <text class="info_tip">更新时间：{{ dayWth.update_time }}</text>
 
     <view v-for="(item, idx) in weekWth.data" :key="idx" class="item">
       <view class="item_icon">
         <span :class="`iconfont icon-${item.wea_img}`" style="font-size: 60rpx"></span>
-        <text>{{ dayjs(item.date).format("MM-DD") }}</text>
+        <text>{{ dayjs(item.date).format('MM-DD') }}</text>
       </view>
       <text class="item_wea">{{ item.wea }}</text>
       <text>{{ item.tem_day }}°/{{ item.tem_night }}°</text>
@@ -35,14 +33,14 @@
     <text class="info_tip">更新时间：{{ weekWth.update_time }}</text>
   </view>
 </template>
-    
-<script lang='ts' setup>
-import { onMounted, reactive, ref, toRaw, toRefs } from "vue";
-import { onLoad } from "@dcloudio/uni-app";
-import BMapWX from "@/libs/bmap-wx.min.js";
-import dayjs from "dayjs";
+
+<script lang="ts" setup>
+import { onMounted, reactive, ref, toRaw, toRefs } from 'vue';
+import { onLoad } from '@dcloudio/uni-app';
+import BMapWX from '@/libs/bmap-wx.min.js';
+import dayjs from 'dayjs';
 // ===================== 私有属性 =====================
-let address: any = ref("");
+let address: any = ref('');
 const state: IObject = reactive({
   dayWth: {},
   weekWth: {},
@@ -50,24 +48,24 @@ const state: IObject = reactive({
 let { weekWth, dayWth } = toRefs(state);
 
 const BMap: IObject = new BMapWX({
-  ak: "Ui916NbXZCXlGWU4i33SZArqhWWReAWK",
+  ak: 'Ui916NbXZCXlGWU4i33SZArqhWWReAWK',
 });
 // ===================== 生命周期 =====================
 onLoad((pageParams) => {
-  console.info("页面参数:", pageParams);
+  console.info('页面参数:', pageParams);
   wx.getSetting({
     success: (res: IObject) => {
-      console.log("authSetting", res);
-      if (!res.authSetting["scope.userLocation"]) {
-        console.info("没授权");
+      console.log('authSetting', res);
+      if (!res.authSetting['scope.userLocation']) {
+        console.info('没授权');
         wx.authorize({
-          scope: "scope.userLocation",
-          success: () => { },
+          scope: 'scope.userLocation',
+          success: () => {},
           fail: (err: IObject) => {
-            console.error("err:", err);
+            console.error('err:', err);
             wx.showToast({
-              title: "请检查位置权限是否开启",
-              icon: "none",
+              title: '请检查位置权限是否开启',
+              icon: 'none',
               duration: 2000,
             });
           },
@@ -80,10 +78,9 @@ onLoad((pageParams) => {
 onMounted(() => {
   BMap.regeocoding({
     success: (res: IObject) => {
-      console.log("res", res);
+      console.log('res', res);
       const { result = {} } = res.originalData;
-      address =
-        result.addressComponent.district + " " + result.addressComponent.street;
+      address = result.addressComponent.district + ' ' + result.addressComponent.street;
       weekWeather(result.addressComponent.city);
       dayWeather(result.addressComponent.city);
     },
@@ -96,61 +93,61 @@ onMounted(() => {
 
 function weekWeather(city: string) {
   uni.request({
-    url: "https://v0.yiketianqi.com/free/week",
-    method: "GET",
+    url: 'https://v0.yiketianqi.com/free/week',
+    method: 'GET',
     data: {
-      appid: "51253198",
-      appsecret: "yjm3FqHb",
+      appid: '51253198',
+      appsecret: 'yjm3FqHb',
       city: city.slice(0, -1),
     },
     success: (res) => {
       const { data } = res;
       state.weekWth = data;
-      console.log("weekWth", weekWth);
+      console.log('weekWth', weekWth);
     },
     fail: (e) => {
-      console.log("e", e);
+      console.log('e', e);
     },
   });
 }
 
 function dayWeather(city: string) {
   uni.request({
-    url: "https://v0.yiketianqi.com/free/day",
-    method: "GET",
+    url: 'https://v0.yiketianqi.com/free/day',
+    method: 'GET',
     data: {
-      appid: "51253198",
-      appsecret: "yjm3FqHb",
+      appid: '51253198',
+      appsecret: 'yjm3FqHb',
       city: city.slice(0, -1),
     },
     success: (res) => {
       const { data } = res;
       state.dayWth = data;
-      console.log("dayWeather", dayWth);
+      console.log('dayWeather', dayWth);
     },
     fail: (e) => {
-      console.log("e", e);
+      console.log('e', e);
     },
   });
 }
 
 function airQuality(air: number) {
   if (air >= 0 && air <= 50) {
-    return "优：" + air;
+    return '优：' + air;
   } else if (air >= 51 && air <= 100) {
-    return "良：" + air;
+    return '良：' + air;
   } else if (air >= 101 && air <= 150) {
-    return "轻度污染：" + air;
+    return '轻度污染：' + air;
   } else if (air >= 151 && air <= 200) {
-    return "中度污染：" + air;
+    return '中度污染：' + air;
   } else if (air >= 201 && air <= 300) {
-    return "重度污染：" + air;
+    return '重度污染：' + air;
   } else if (air > 300) {
-    return "严重污染：" + air;
+    return '严重污染：' + air;
   }
 }
 </script>
-    
+
 <style lang="scss" scoped>
 .page {
   width: 100%;
