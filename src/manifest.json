@@ -61,7 +61,10 @@
                     "packageJsonPath": "./package.json",
                     "miniprogramNpmDistDir": "./uni_modules/"
                 }
-            ]
+            ],
+            /* 关闭过滤无依赖文件 */
+            "ignoreDevUnusedFiles":false,
+            "ignoreUploadUnusedFiles": false
         },
         "darkmode": true,
         "themeLocation": "theme.json",

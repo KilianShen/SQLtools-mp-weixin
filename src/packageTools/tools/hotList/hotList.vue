@@ -8,6 +8,7 @@
 import { onMounted, reactive, Ref, ref } from 'vue';
 import { onLoad } from '@dcloudio/uni-app';
 import hotListItem from './hotListItem.vue';
+import appUtils from '@/utils/appUtils';
 // ===================== 私有属性 =====================
 let data: IObject = reactive({ data: [] });
 
@@ -22,17 +23,14 @@ onLoad((pageParams) => {
 onMounted(() => {});
 
 function getHotList() {
-  wx.request({
-    url: 'https://api.zhihu.com/topstory/hot-list',
-    data: {
-      // limit: '10',
-      // reverse_order: '0'
-    },
-    success: (res: IObject) => {
+  appUtils
+    .POST('https://api.zhihu.com/topstory/hot-list')
+    .then((res) => {
       data.data = res.data.data;
-      console.log('data', data);
-    },
-  });
+    })
+    .catch((err) => {
+      console.log('err', err);
+    });
 }
 
 async function refresh() {

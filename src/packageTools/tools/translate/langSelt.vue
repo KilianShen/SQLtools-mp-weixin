@@ -9,7 +9,7 @@
 <script lang="ts" setup>
 import { onMounted, reactive, getCurrentInstance, ComponentInternalInstance } from 'vue';
 import { onLoad } from '@dcloudio/uni-app';
-import { Router } from '@/utils/utils';
+import appUtils from '@/utils/appUtils';
 // ===================== 私有属性 =====================
 let pageParams: IObject = {};
 const langMap: IObject[] = [
@@ -54,7 +54,7 @@ onMounted(() => {});
 // ===================== 私有方法 =====================
 function selectLang(lang: IObject) {
   appContext.config.globalProperties.$mitt.emit('langSelt', { ...lang, type: pageParams.type });
-  Router.back();
+  appUtils.back();
 }
 </script>
 

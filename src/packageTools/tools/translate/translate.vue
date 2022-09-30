@@ -15,7 +15,7 @@
 import { onMounted, ref, Ref, reactive, getCurrentInstance, ComponentInternalInstance, onBeforeMount } from 'vue';
 import { onLoad } from '@dcloudio/uni-app';
 import { MD5 } from 'crypto-js';
-import { Router } from '@/utils/utils';
+import appUtils from '@/utils/appUtils';
 // ===================== 私有属性 =====================
 const appid = '20220813001304956';
 const key = 'gvy53DUYiqwEXdhLr845';
@@ -80,7 +80,7 @@ function translate() {
 }
 
 function select(type: string) {
-  Router.push('/packageTools/tools/translate/langSelt', { type });
+  appUtils.push('/packageTools/tools/translate/langSelt', { type });
 }
 
 function exchange() {

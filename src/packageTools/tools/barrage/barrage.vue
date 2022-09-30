@@ -40,7 +40,7 @@
 <script setup lang="ts">
 import ColorPicker from '@/widgets/wxy-color-picker_0.0.4/components/wxy-color-picker/wxy-color-picker.vue';
 import { onMounted, ref, reactive } from 'vue';
-import { Router } from '@/utils/utils';
+import appUtils from '@/utils/appUtils';
 // const color = { r: 122, g: 189, b: 154, a: 1 };
 let textColorPicker: any = ref(null);
 let backgroundColorPicker: any = ref(null);
@@ -84,7 +84,7 @@ const radioChange = (e: any) => {
 };
 
 const showBarrage = () => {
-  Router.push('/packageTools/tools/barrage/barrageScreen', setting);
+  appUtils.push('/packageTools/tools/barrage/barrageScreen', setting);
 };
 /**
  * @desp rgba2Hex
