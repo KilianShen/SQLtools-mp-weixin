@@ -5,11 +5,9 @@ const Request = {
                 url: url,
                 data: params,
                 success: (res) => {
-                    console.log(1);
                     resolve(res)
                 },
                 fail: (err) => {
-                    console.log(2);
                     reject(err);
                 }
             });
