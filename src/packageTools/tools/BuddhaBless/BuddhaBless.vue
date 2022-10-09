@@ -1,13 +1,14 @@
 <template>
   <view class="page">
-    <!-- <view class="woodenFish"></view> -->
-    <!-- <view class="mallet">
-            <view class="mallet_ball"></view>
-            <view class="mallet_stick">
-            </view>
-        </view> -->
-    <button @click="throttledClick">btn</button>
+    <text class="count">功德:{{ count }}</text>
     <view :animation="state.animationData" class="add"> +1 </view>
+    <view class="assembly" @click="throttledClick">
+      <view class="woodenFish"></view>
+      <view class="mallet">
+        <view class="mallet_ball"></view>
+        <view class="mallet_stick"></view>
+      </view>
+    </view>
   </view>
 </template>
 
@@ -22,6 +23,8 @@ const state: IObject = reactive({
   animationData: {},
 });
 
+let count = ref(0);
+
 const throttledClick: _.DebouncedFunc<() => void> = _.throttle(click, 200);
 // ===================== 生命周期 =====================
 onLoad((pageParams) => {
@@ -33,12 +36,13 @@ onMounted(() => {});
 //节流防抖
 function click() {
   animation();
-  playAudio();
+  count.value++;
+  // playAudio();
 }
 
 function animation() {
   var _animation = wx.createAnimation({
-    duration: 200,
+    duration: 100,
     timingFunction: 'ease',
     transformOrigin: '50% 50%',
   });
@@ -54,9 +58,9 @@ function animation() {
     });
     _animation2.scale(1, 1).translate(0, 0).opacity(1).step();
     state.animationData = _animation2.export();
-  }, 220);
+  }, 100);
 }
-
+// TODO
 function playAudio() {
   console.log('play');
   const innerAudioContext = wx.createInnerAudioContext({
@@ -76,15 +80,31 @@ function playAudio() {
 
 <style lang="scss" scoped>
 .page {
+  border: 1px solid #000;
   width: 100vw;
   height: 100vh;
-  // background: #000;
+  background: #000;
+}
+.count {
+  display: flex;
+  flex-direction: row-reverse;
+  color: #fff;
+  font-size: 50rpx;
+  padding-right: 100rpx;
+}
+
+.assembly {
+  height: 500rpx;
+  position: relative;
 }
 
 .woodenFish {
-  width: 725rpx;
-  height: 550rpx;
-  background: #999;
+  position: absolute;
+  // width: 725rpx;
+  // height: 550rpx;
+  width: 507rpx;
+  height: 385rpx;
+  background: #fff;
   // 画图
   clip-path: polygon(
     60% 0%,
@@ -171,24 +191,26 @@ function playAudio() {
 }
 
 .mallet {
+  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: max-content;
-  border: 1px solid #f00;
+  transform: rotate(-45deg);
+  right: 150rpx;
 
   &_ball {
     width: 40rpx;
     height: 40rpx;
     border-radius: 50%;
-    background: #000;
+    background: #fff;
   }
 
   &_stick {
     margin-top: -5rpx;
     width: 30rpx;
     height: 300rpx;
-    background: #000;
+    background: #fff;
     clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
     border-radius: 20rpx;
     position: relative;
@@ -197,10 +219,12 @@ function playAudio() {
 }
 
 .add {
-  width: max-content;
+  width: 100%;
   height: max-content;
-  margin: 100rpx;
+  text-align: center;
+  margin: 100rpx 0;
   font-size: 60rpx;
   font-weight: bold;
+  color: #fff;
 }
 </style>

@@ -64,6 +64,12 @@ export default defineComponent({
           path: '/packageTools/tools/QRcode/QRcode',
         },
         {
+          name: '电子木鱼',
+          icon: 'kaifa',
+          color: '#5dd88d',
+          path: '/packageTools/tools/BuddhaBless/BuddhaBless',
+        },
+        {
           name: '图片剪裁',
           icon: 'kaifa',
           color: '#5dd88d',
