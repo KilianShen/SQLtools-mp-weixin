@@ -13,6 +13,7 @@
 <script lang="ts" setup>
 import { onMounted, reactive, toRefs } from 'vue';
 import { onLoad } from '@dcloudio/uni-app';
+import dayjs from 'dayjs';
 // ===================== 私有属性 =====================
 const state: IObject = reactive({
   eventList: [],
@@ -23,8 +24,8 @@ onLoad((pageParams) => {
 });
 
 onMounted(() => {
-  let month = ('0' + (new Date().getMonth() + 1)).slice(-2);
-  let day = String(new Date().getDate());
+  let month = dayjs().format('MM');
+  let day = dayjs().format('DD');
   console.log(month, day);
   eventsOnHistory(month, day);
 });
