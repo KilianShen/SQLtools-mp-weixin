@@ -82,10 +82,16 @@ export default defineComponent({
           path: '/packageTools/testPage/testPage',
         },
         {
-          name: 'testPage',
+          name: 'testPage3',
           icon: 'kaifa',
           color: '#5dd88d',
-          path: '/packageTools/testPage/testPage',
+          path: '/packageTools/testPage/testPage3',
+        },
+        {
+          name: 'testWeb',
+          icon: 'kaifa',
+          color: '#5dd88d',
+          path: '/packageTools/testPage/testWeb',
         },
       ],
     };

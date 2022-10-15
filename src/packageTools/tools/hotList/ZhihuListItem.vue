@@ -20,17 +20,16 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, reactive, ref } from 'vue';
+import { onMounted, reactive, ref, toRaw } from 'vue';
 // ===================== 私有属性 =====================
-const props = defineProps({
-  item: {
-    type: Object,
-    default: NaN,
-  },
-});
-const item: IObject = ref(props.item);
+interface Prop {
+  item: IObject;
+}
+const { item } = defineProps<Prop>();
 // ===================== 生命周期 =====================
-onMounted(() => {});
+onMounted(() => {
+  // console.log('toRaw(item)', toRaw(item));
+});
 // ===================== 私有方法 =====================
 </script>
 

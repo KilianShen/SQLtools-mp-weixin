@@ -6,7 +6,7 @@ const store = useStore();
 onLaunch(() => {
   console.log('App Launch');
   // 存储SystemInfo
-  wx.getSystemInfoAsync({
+  uni.getSystemInfo({
     success: (res: IObject) => {
       console.log('getSystemInfoAsync', res);
       store.commit('systemInfo/SET_VALUE', res);

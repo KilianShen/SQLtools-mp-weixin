@@ -1,87 +1,67 @@
 <template>
-  <scroll-view
-    class="scroll"
-    scroll-y
-    refresher-enabled
-    :scroll-top="scrollTop"
-    :scroll-with-animation="true"
-    :refresher-triggered="triggered"
-    @refresherrefresh="refresh"
-    @scroll="scroll"
-  >
-    <hotListItem v-for="item in data.data" :key="item.id" :item="item"></hotListItem>
-    <uni-load-more status="no-more"></uni-load-more>
-  </scroll-view>
-  <view class="pageScrollTo" @click="pageScrollTo()" v-show="oldScrollTop > windowHeight">
-    <uni-icons class="pageScrollTo_icon" type="top" size="30"></uni-icons>
-  </view>
+  <van-tabs :active="current" @change="onChange" title-active-color="#ee0a24">
+    <van-tab title="知乎"></van-tab>
+    <van-tab title="百度"></van-tab>
+    <van-tab title="环球"></van-tab>
+  </van-tabs>
+
+  <swiper class="swiper" :autoplay="false" @change="change" :current="current">
+    <swiper-item>
+      <view class="swiper-item"><ZhiHuList /></view>
+    </swiper-item>
+    <swiper-item>
+      <view class="swiper-item"><BaiduList /></view>
+    </swiper-item>
+    <swiper-item>
+      <view class="swiper-item"><GlobalList /></view>
+    </swiper-item>
+  </swiper>
 </template>
 
 <script lang="ts" setup>
-import { nextTick, onMounted, reactive, Ref, ref } from 'vue';
-import { onLoad } from '@dcloudio/uni-app';
-import hotListItem from '@/packageTools/tools/hotList/hotListItem.vue';
+import { onMounted, reactive, ref } from 'vue';
+import { onLoad, onShareAppMessage } from '@dcloudio/uni-app';
+import ZhiHuList from './ZhihuList.vue';
+import BaiduList from './BaiduList.vue';
 import appUtils from '@/utils/appUtils';
+import GlobalList from './GlobalList.vue';
 // ===================== 私有属性 =====================
-let data: IObject = reactive({ data: [] });
-let triggered: Ref<boolean> = ref(false);
-let windowHeight: number = wx.getWindowInfo().windowHeight;
-let scrollTop = ref(0);
-let oldScrollTop = ref(0);
+let current = ref(0);
+let windowHeight: number = wx.getWindowInfo().windowHeight - 44;
 // ===================== 生命周期 =====================
 onLoad((pageParams) => {
   console.info('页面参数:', pageParams);
-  getHotList();
 });
 
 onMounted(() => {});
-
 // ===================== 私有方法 =====================
-function getHotList() {
-  appUtils
-    .POST('https://api.zhihu.com/topstory/hot-list')
-    .then((res) => {
-      data.data = res.data.data;
-    })
-    .catch((err) => {
-      console.log('err', err);
-    });
+function onChange(e: IObject) {
+  current.value = e.detail.index;
 }
 
-async function refresh() {
-  triggered.value = true;
-  await getHotList();
-  triggered.value = false;
+function change(e: IObject) {
+  current.value = e.detail.current;
 }
 
-function scroll(e: IObject) {
-  oldScrollTop.value = e.detail.scrollTop;
-}
+onShareAppMessage((res) => {
+  console.log('res', res);
+  let shareData;
+  if (res.from === 'button') {
+    shareData = res.target.dataset.wxsharesetup.shareData;
+  }
 
-function pageScrollTo() {
-  scrollTop.value = oldScrollTop.value;
-  nextTick(() => {
-    scrollTop.value = 0;
-  });
-}
+  const shareObj = {
+    title: shareData.word,
+    imageUrl: shareData.img,
+    path: appUtils.getCurrentPages(),
+  };
+  console.log('shareObj\n', JSON.stringify(shareObj, null, 2));
+  return shareObj;
+});
 </script>
 
 <style lang="scss" scoped>
-.scroll {
+.swiper {
   height: v-bind("windowHeight+'px'");
-}
-.pageScrollTo {
-  width: 100rpx;
-  height: 100rpx;
-  position: fixed;
-  bottom: 300rpx;
-  right: 60rpx;
-  background: #e1e1e1;
-  border-radius: 50%;
-  &_icon {
-    display: block;
-    text-align: center;
-    margin-top: 15%;
-  }
 }
 </style>

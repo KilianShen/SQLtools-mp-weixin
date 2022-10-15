@@ -102,6 +102,12 @@
 						"navigationBarTitleText": "BuddhaBless",
 						"navigationBarBackgroundColor": "#000"
 					}
+				},
+				{
+					"path": "tools/PhotoEditor/PhotoEditor",
+					"style": {
+						"navigationBarTitleText": "编辑图片"
+					}
 				}
 			]
 		}
@@ -112,7 +118,10 @@
 		"navigationBarBackgroundColor": "@navBgColor",
 		"backgroundColor": "@navBgColor",
 		"usingComponents": {
-			// "van-button": "/wxcomponents/vant-weapp/dist/button/index",
+			"van-tab": "/wxcomponents/vant-weapp/dist/tab/index",
+			"van-tabs": "/wxcomponents/vant-weapp/dist/tabs/index",
+			"van-button": "/wxcomponents/vant-weapp/dist/button/index",
+			"van-icon": "/wxcomponents/vant-weapp/dist/icon/index"
 		}
 	},
 	"easycom": {
