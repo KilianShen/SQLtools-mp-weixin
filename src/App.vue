@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onLaunch, onShow, onHide } from '@dcloudio/uni-app';
-import { useStore } from 'vuex';
+import { useStore } from '@/store/user';
 const store = useStore();
 
 onLaunch(() => {
@@ -9,7 +9,7 @@ onLaunch(() => {
   uni.getSystemInfo({
     success: (res: IObject) => {
       console.log('getSystemInfoAsync', res);
-      store.commit('systemInfo/SET_VALUE', res);
+      useStore().systemInfo = res;
     },
   });
 

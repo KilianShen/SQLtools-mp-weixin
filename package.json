@@ -64,6 +64,7 @@
     "crypto-js": "^4.1.1",
     "dayjs": "^1.11.4",
     "mockjs": "^1.1.0",
+    "pinia": "^2.0.23",
     "sass": "^1.54.0",
     "sass-loader": "^13.0.2",
     "tdesign-miniprogram": "^0.19.2",

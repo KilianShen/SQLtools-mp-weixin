@@ -21,7 +21,7 @@
 import appUtils from '@/utils/appUtils';
 import { nextTick, onMounted, reactive, ref, toRaw } from 'vue';
 import _ from 'lodash';
-import store from '@/store';
+import { useStore } from '@/store/user';
 
 interface Props {
   reqUrl: string;
@@ -32,8 +32,8 @@ const props = withDefaults(defineProps<Props>(), {
   reqUrl: '',
   height: wx.getWindowInfo().windowHeight - 44,
 });
-
-let safeAreaBInsetsBottom = store.state.systemInfo.systemInfoVal.safeAreaInsets.bottom;
+const store: IObject = useStore().systemInfo;
+let safeAreaBInsetsBottom = toRaw(store).safeAreaInsets.bottom;
 
 const emit = defineEmits<{ (e: 'getResult', result: any): void }>();
 // ===================== 私有属性 =====================
@@ -56,7 +56,6 @@ function RequestData() {
 }
 
 async function refresh() {
-  console.log(111);
   triggered.value = true;
   await RequestData();
   triggered.value = false;
