@@ -17,7 +17,7 @@
 			"style": {
 				"navigationBarTitleText": "设备信息"
 			}
-		},
+		}
 	],
 	"tabBar": {
 		"color": "#999999",
@@ -124,8 +124,9 @@
 				{
 					"path": "tools/BuddhaBless/BuddhaBless",
 					"style": {
-						"navigationBarTitleText": "BuddhaBless",
-						"navigationBarBackgroundColor": "#000"
+						"navigationBarTitleText": "电子木鱼",
+						"navigationBarBackgroundColor": "#000",
+						"navigationBarTextStyle": "white"
 					}
 				},
 				{
