@@ -45,10 +45,11 @@ const Router = {
 
     /**
      * @desc navigateBack 关闭当前页面，返回上一页面或多级页面
-     * @param params 跳转带入参数 {a:'AA', b:1, c:fasle}
+     * @param delta 返回的页面数，如果 delta 大于现有页面数，则返回到首页。
      */
-    back: (params?: IObject) => {
+    back: (delta?: 1) => {
         uni.navigateBack({
+            delta,
             animationType: "slide-out-left",
         });
     },

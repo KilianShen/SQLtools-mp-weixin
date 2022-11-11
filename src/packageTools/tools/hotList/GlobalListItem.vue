@@ -1,5 +1,5 @@
 <template>
-  <view class="item" v-if="data">
+  <view class="item" v-if="!isEmpty(data)">
     <view>
       <text class="item-title">{{ data.title }}</text>
       <text class="item-sourceNm">{{ data.source.name }}</text>
@@ -14,6 +14,7 @@ import { onMounted, reactive, ref, toRaw } from 'vue';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import zh_cn from 'dayjs/locale/zh-cn';
+import { isEmpty } from 'lodash';
 dayjs.extend(relativeTime);
 dayjs.locale(zh_cn);
 
@@ -32,6 +33,7 @@ onMounted(() => {});
 .item {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   border-bottom: 1rpx solid #e1e1e1;
   margin: 0 30rpx;
   padding: 15rpx 0;
@@ -50,7 +52,8 @@ onMounted(() => {});
     color: #999;
   }
   &-cover {
-    width: 300rpx;
+    flex-shrink: 0;
+    width: 200rpx;
     height: 150rpx;
   }
 }

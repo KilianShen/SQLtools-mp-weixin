@@ -35,9 +35,9 @@ onMounted(() => {});
 
 //节流防抖
 function click() {
+  playAudio();
   animation();
   count.value++;
-  // playAudio();
 }
 
 function animation() {
@@ -60,19 +60,16 @@ function animation() {
     state.animationData = _animation2.export();
   }, 100);
 }
-// TODO
+
 function playAudio() {
   console.log('play');
   const innerAudioContext = wx.createInnerAudioContext({
     // 是否使用 WebAudio 作为底层音频驱动，默认关闭。对于短音频、播放频繁的音频建议开启此选项，开启后将获得更优的性能表现。由于开启此选项后也会带来一定的内存增长，因此对于长音频建议关闭此选项
     useWebAudioImplement: true,
   });
-  // innerAudioContext.src = 'https://bjetxgzv.cdn.bspapp.com/VKCEYUGU-hello-uniapp/2cc220e0-c27a-11ea-9dfb-6da8e309e0d8.mp3'
-  let audioSrc = 'packageTools/tools/BuddhaBless/3847.mp3';
+  innerAudioContext.autoplay = true;
+  let audioSrc = '/static/3692.mp3';
   innerAudioContext.src = audioSrc;
-  innerAudioContext.play(); // 播放
-  // innerAudioContext.pause() // 暂停
-  // innerAudioContext.stop()
 }
 
 // ===================== 私有方法 =====================
@@ -80,7 +77,6 @@ function playAudio() {
 
 <style lang="scss" scoped>
 .page {
-  border: 1px solid #000;
   width: 100vw;
   height: 100vh;
   background: #000;
@@ -223,7 +219,7 @@ function playAudio() {
   height: max-content;
   text-align: center;
   margin: 100rpx 0;
-  font-size: 60rpx;
+  font-size: 80rpx;
   font-weight: bold;
   color: #fff;
 }

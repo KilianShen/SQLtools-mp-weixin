@@ -29,7 +29,7 @@ onMounted(() => {
       },
     ],
   });
-  console.log('mockData.list\n', JSON.stringify(mockData.list, null, 2));
+  // console.log('mockData.list\n', JSON.stringify(mockData.list, null, 2));
 });
 
 onShareAppMessage((res: any) => {

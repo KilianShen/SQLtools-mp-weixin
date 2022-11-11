@@ -1,14 +1,23 @@
-import { createStore } from "vuex";
-import systemInfo from "./modules/systemInfo";
+import { defineStore } from 'pinia'
 
-const state: IObject = {
-    test: 'TESTVAL'
-};
-const actions = {};
-const mutations = {};
-const modules = { systemInfo };
-const store = createStore({
-    state, actions, mutations, modules
+export const mainStore = defineStore('main', {
+    state: () => {
+        return {
+            // 所有这些属性都将自动推断其类型
+            counter: 0,
+            systemInfo: {},
+            turnTableList: <any>[]
+        }
+    },
+    getters: {
+        doubleCount: (state) => state.counter * 2,
+    },
+    actions: {
+        increment() {
+            this.counter++
+        },
+        randomizeCounter() {
+            this.counter = Math.round(100 * Math.random())
+        },
+    },
 })
-
-export default store;

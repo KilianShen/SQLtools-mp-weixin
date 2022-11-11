@@ -5,10 +5,7 @@ import { createPinia } from 'pinia'
 
 export function createApp() {
   const app = createSSRApp(App);
-  const pinia = createPinia();
   app.config.globalProperties.$mitt = mitt();
-  app.use(pinia);
-  return {
-    app,
-  };
+  app.use(createPinia());
+  return { app };
 }

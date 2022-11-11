@@ -1,11 +1,10 @@
 <template>
-  <!-- <text>请输入弹幕内容</text> -->
   <input class="input" auto-focus placeholder="请输入弹幕内容" @input="input" />
-  <text>文字大小</text>
+  <text class="title">文字大小</text>
   <slider @change="sizeChange" min="20" max="50" :value="30" show-value />
-  <text>滚动速度</text>
+  <text class="title">滚动速度</text>
   <slider @change="speedChange" min="2" max="8" :value="5" step="1" show-value />
-  <text>选择颜色</text>
+  <text class="title">选择颜色</text>
   <view class="picker">
     <view @click="openTextColorPicker" class="picker_item">
       <view class="picker_item_ridio" :style="{ background: `${setting.textColor}` }"></view><text>文本颜色</text>
@@ -23,17 +22,8 @@
   <ColorPicker ref="textColorPicker" @confirm="textColorPikcerConfirm"></ColorPicker>
   <ColorPicker ref="backgroundColorPicker" @confirm="backgroundColorPikcerConfirm"></ColorPicker>
 
-  <radio-group @change="radioChange">
-    <label>
-      <radio :value="0" :checked="true"></radio>
-      <text>静止弹幕</text>
-    </label>
-    <label>
-      <radio :value="1" :checked="false"></radio>
-      <text>滚动弹幕</text>
-    </label>
-  </radio-group>
-
+  <text class="title">是否滚动</text>
+  <switch @change="switchChange" style="margin-left: 30rpx" />
   <text @click="showBarrage" class="btn">显示弹幕</text>
 </template>
 
@@ -79,8 +69,8 @@ const input = (e: any) => {
   setting.text = e.target.value;
 };
 
-const radioChange = (e: any) => {
-  setting.isRolling = e.target.value === '1' ? 1 : 0;
+const switchChange = (e: any) => {
+  setting.isRolling = e.detail.value ? 1 : 0;
 };
 
 const showBarrage = () => {
@@ -102,8 +92,13 @@ const RGBA2HEX = (rgba: IObject): string => {
 
 <style lang="scss" scoped>
 .input {
-  margin-top: 30rpx;
+  margin: 60rpx 30rpx 30rpx 30rpx;
   border-bottom: 6rpx solid #7abd9a;
+}
+
+.title {
+  display: block;
+  margin: 60rpx 30rpx 10rpx 30rpx;
 }
 
 .picker {

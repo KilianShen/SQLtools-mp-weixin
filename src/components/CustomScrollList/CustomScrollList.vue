@@ -21,7 +21,7 @@
 import appUtils from '@/utils/appUtils';
 import { nextTick, onMounted, reactive, ref, toRaw } from 'vue';
 import _ from 'lodash';
-import { useStore } from '@/store/user';
+import { mainStore } from '@/store';
 
 interface Props {
   reqUrl: string;
@@ -32,7 +32,7 @@ const props = withDefaults(defineProps<Props>(), {
   reqUrl: '',
   height: wx.getWindowInfo().windowHeight - 44,
 });
-const store: IObject = useStore().systemInfo;
+const store: IObject = mainStore().systemInfo;
 let safeAreaBInsetsBottom = toRaw(store).safeAreaInsets.bottom;
 
 const emit = defineEmits<{ (e: 'getResult', result: any): void }>();

@@ -11,8 +11,33 @@
 			"style": {
 				"navigationBarTitleText": "我"
 			}
-		}
+		},
+		{
+			"path": "pages/mine/DeviceInfo",
+			"style": {
+				"navigationBarTitleText": "设备信息"
+			}
+		},
 	],
+	"tabBar": {
+		"color": "#999999",
+		"selectedColor": "#000000",
+		"backgroundColor": "@bgColor",
+		"list": [
+			{
+				"pagePath": "pages/homePage/homePage",
+				"iconPath": "static/home_fill_unseleted.png",
+				"selectedIconPath": "static/home_fill_seleted.png",
+				"text": "工具"
+			},
+			{
+				"pagePath": "pages/mine/mine",
+				"iconPath": "static/mine_unseleted.png",
+				"selectedIconPath": "static/mine_seleted.png",
+				"text": "我"
+			}
+		]
+	},
 	"subpackages": [
 		{
 			"root": "packageTools",
@@ -107,6 +132,18 @@
 					"path": "tools/PhotoEditor/PhotoEditor",
 					"style": {
 						"navigationBarTitleText": "编辑图片"
+					}
+				},
+				{
+					"path": "tools/Turntable/Turntable",
+					"style": {
+						"navigationBarTitleText": "做个决定"
+					}
+				},
+				{
+					"path": "tools/Turntable/EditTurntable",
+					"style": {
+						"navigationBarTitleText": "编辑转盘"
 					}
 				}
 			]

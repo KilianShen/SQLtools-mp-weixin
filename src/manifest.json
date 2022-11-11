@@ -63,7 +63,7 @@
                 }
             ],
             /* 关闭过滤无依赖文件 */
-            "ignoreDevUnusedFiles":false,
+            "ignoreDevUnusedFiles": false,
             "ignoreUploadUnusedFiles": false
         },
         "darkmode": true,
@@ -81,25 +81,6 @@
             "scope.userLocation": {
                 "desc": "你的位置信息将用于小程序位置接口"
             }
-        },
-        "tabBar": {
-            "color": "#999999",
-            "selectedColor": "#000000",
-            "backgroundColor": "@bgColor",
-            "list": [
-                {
-                    "pagePath": "pages/homePage/homePage",
-                    "iconPath": "static/home_fill_unseleted.png",
-                    "selectedIconPath": "static/home_fill_seleted.png",
-                    "text": "工具"
-                },
-                {
-                    "pagePath": "pages/mine/mine",
-                    "iconPath": "static/mine_unseleted.png",
-                    "selectedIconPath": "static/mine_seleted.png",
-                    "text": "我"
-                }
-            ]
         }
     },
     "mp-alipay": {

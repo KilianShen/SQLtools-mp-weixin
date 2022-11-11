@@ -19,16 +19,22 @@
     </view>
   </view>
   <view class="gap"></view>
+  <view class="menu">
+    <uni-icons type="list" size="24"></uni-icons>
+    <text class="menu-item" @click="goToPage(1)">全部参数</text>
+  </view>
 </template>
 
 <script setup lang="ts">
 import { onMounted, reactive, ref } from 'vue';
 import Mock from 'mockjs';
+import appUtils from '@/utils/appUtils';
 
 let state: IObject = reactive({
   nickname: '',
   initialName: '',
-  avatar: 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0',
+  avatar:
+    'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0',
   disabled: true,
 });
 
@@ -81,6 +87,16 @@ function edit() {
 function blur() {
   state.disabled = true;
 }
+
+function goToPage(idx: number) {
+  switch (idx) {
+    case 1:
+      appUtils.push('pages/mine/DeviceInfo');
+      break;
+    default:
+      break;
+  }
+}
 </script>
 
 <style lang="scss">
@@ -127,6 +143,19 @@ function blur() {
       font-weight: bold;
       color: #999;
     }
+  }
+}
+
+.menu {
+  padding: 20rpx 30rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1rpx solid #e1e1e1;
+  &-item {
+    display: block;
+    width: 100%;
+    margin-left: 20rpx;
   }
 }
 </style>

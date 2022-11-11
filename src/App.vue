@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { onLaunch, onShow, onHide } from '@dcloudio/uni-app';
-import { useStore } from '@/store/user';
-const store = useStore();
+import { mainStore } from '@/store';
 
 onLaunch(() => {
   console.log('App Launch');
@@ -9,7 +8,7 @@ onLaunch(() => {
   uni.getSystemInfo({
     success: (res: IObject) => {
       console.log('getSystemInfoAsync', res);
-      useStore().systemInfo = res;
+      mainStore().systemInfo = res;
     },
   });
 

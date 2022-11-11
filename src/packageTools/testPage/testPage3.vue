@@ -1,20 +1,22 @@
 <template>
   <button @click="chooseMedia">chooseMedia</button>
-  <text>{{tempFilePath}}</text>
+  <text>{{ tempFilePath }}</text>
   <image :src="tempFilePath"></image>
 </template>
-    
+
 <script lang="ts" setup>
-import { onMounted, reactive, ref } from "vue";
-import { onLoad } from "@dcloudio/uni-app";
+import { onMounted, reactive, ref } from 'vue';
+import { onLoad } from '@dcloudio/uni-app';
+import appUtils from '@/utils/appUtils';
 // ===================== 私有属性 =====================
-let tempFilePath = ref('')
+let tempFilePath = ref('');
 // ===================== 生命周期 =====================
 onLoad((pageParams) => {
-  console.info("页面参数:", pageParams);
+  console.info('页面参数:', pageParams);
 });
-
-onMounted(() => { });
+onMounted(() => {
+  appUtils.log.warn(1, '2', true, [3, 4], { name: '张三' }, JSON.stringify({ name: '李四', age: 12, data: { a: 1, b: 2 } }));
+});
 // ===================== 私有方法 =====================
 function chooseMedia() {
   wx.chooseMedia({
@@ -29,10 +31,10 @@ function chooseMedia() {
         src: res.tempFiles[0].tempFilePath, // 图片路径
         cropScale: '1:1', // 裁剪比例
         success: (res: IObject) => {
-          console.log("res", res.tempFilePath);
-          tempFilePath.value = res.tempFilePath
+          console.log('res', res.tempFilePath);
+          tempFilePath.value = res.tempFilePath;
           // console.log("tempFilePath", tempFilePath);
-          console.log("tempFilePath.value", tempFilePath.value);
+          console.log('tempFilePath.value', tempFilePath.value);
           // wx.getImageInfo({
           //   src: tempFilePath.value,
           //   success: (res: IObject) => {
@@ -50,14 +52,12 @@ function chooseMedia() {
           // })
         },
         fail: (err: any) => {
-          console.error("err:", err);
-        }
+          console.error('err:', err);
+        },
       });
-    }
-  })
+    },
+  });
 }
 </script>
-    
-<style lang="scss" scoped>
 
-</style>
+<style lang="scss" scoped></style>

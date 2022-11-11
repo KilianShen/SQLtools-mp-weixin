@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "419400",
+      "name": "转盘设置",
+      "font_class": "zhuanpanshezhi",
+      "unicode": "e66b",
+      "unicode_decimal": 58987
+    },
+    {
+      "icon_id": "5257153",
+      "name": "木鱼",
+      "font_class": "muyu",
+      "unicode": "e658",
+      "unicode_decimal": 58968
+    },
+    {
       "icon_id": "4848073",
       "name": "二维码",
       "font_class": "erweima",
