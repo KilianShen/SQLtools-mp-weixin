@@ -8,11 +8,20 @@
       <view style="width: 100px; height: 100px; background-color: #999" @click="show = false"></view>
     </share-element>
   </page-container>
+  <view style="width: 550rpx; border: 1px solid #333">
+    <Tabs :list="[{ name: 'AAA' }, { name: 'BBB' }, { name: 'CCCC' }, { name: 'DDD' }, { name: 'EE' }]" :scrollable="true"></Tabs>
+    <view style="height: 100rpx"></view>
+    <Tabs
+      :list="[{ name: 'AAA' }, { name: 'BBB' }, { name: 'CCCC' }, { name: 'DDD' }, { name: 'EE' }]"
+      :scrollable="false"
+    ></Tabs>
+  </view>
 </template>
 
 <script lang="ts" setup>
 import { onMounted, reactive, Ref, ref, toRefs } from 'vue';
 import { onLoad } from '@dcloudio/uni-app';
+import Tabs from '@/components/Tabs/Tabs.vue';
 // ===================== 私有属性 =====================
 let show: Ref<boolean> = ref(false);
 // ===================== 生命周期 =====================
