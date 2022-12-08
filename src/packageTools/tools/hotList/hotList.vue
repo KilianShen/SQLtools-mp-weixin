@@ -1,10 +1,5 @@
 <template>
-  <van-tabs :active="current" @change="onChange" title-active-color="#ee0a24">
-    <van-tab title="知乎"></van-tab>
-    <van-tab title="百度"></van-tab>
-    <van-tab title="环球"></van-tab>
-  </van-tabs>
-
+  <Tabs :list="[{ name: '知乎' }, { name: '百度' }, { name: '环球' }]" @onChange="onChange" :active="current"></Tabs>
   <swiper class="swiper" :autoplay="false" @change="change" :current="current">
     <swiper-item>
       <view class="swiper-item"><ZhiHuList /></view>
@@ -23,8 +18,9 @@ import { onMounted, reactive, ref } from 'vue';
 import { onLoad, onShareAppMessage } from '@dcloudio/uni-app';
 import ZhiHuList from './ZhihuList.vue';
 import BaiduList from './BaiduList.vue';
-import appUtils from '@/utils/appUtils';
 import GlobalList from './GlobalList.vue';
+import appUtils from '@/utils/appUtils';
+import Tabs from '@/components/Tabs/Tabs.vue';
 // ===================== 私有属性 =====================
 let current = ref(0);
 let windowHeight: number = wx.getWindowInfo().windowHeight - 44;
@@ -35,8 +31,8 @@ onLoad((pageParams) => {
 
 onMounted(() => {});
 // ===================== 私有方法 =====================
-function onChange(e: IObject) {
-  current.value = e.detail.index;
+function onChange(idx: number) {
+  current.value = idx;
 }
 
 function change(e: IObject) {

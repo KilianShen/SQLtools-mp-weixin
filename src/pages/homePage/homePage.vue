@@ -1,11 +1,9 @@
 <template>
   <view class="grid">
-    <uni-grid :column="3" :showBorder="false" :square="false" @change="goToPage">
-      <uni-grid-item class="grid_item" v-for="(item, index) in list" :key="index" :index="index">
-        <view :class="`iconfont icon-${item.icon}`" :style="`color:${item.color};font-size:80rpx`"></view>
-        <text class="text">{{ item.name }}</text>
-      </uni-grid-item>
-    </uni-grid>
+    <view class="grid_item" v-for="(item, index) in list" :key="index" :index="index" @click="goToPage(index)">
+      <view :class="`iconfont icon-${item.icon}`" :style="`color:${item.color};font-size:80rpx`"></view>
+      <text class="text">{{ item.name }}</text>
+    </view>
   </view>
 </template>
 
@@ -104,9 +102,8 @@ export default defineComponent({
   },
 
   methods: {
-    goToPage(e: IObject) {
-      const { index } = e.detail;
-      const path = this.list[index].path;
+    goToPage(idx: number) {
+      const path = this.list[idx].path;
       if (!path) {
         return;
       }
@@ -127,6 +124,8 @@ export default defineComponent({
 <style scoped lang="scss">
 .grid {
   padding: 5vw;
+  display: flex;
+  flex-wrap: wrap;
 
   &_item {
     width: 30vw;

@@ -4,7 +4,7 @@
     <uni-icons v-else type="folder-add" size="200" color="#e1e1e1"></uni-icons>
   </view>
   <slider
-    :value="0"
+    :value="state.editor[activeItem].value"
     :disabled="!tempFilePath"
     @changing="sliderChange"
     activeColor="#ffcf17"
@@ -46,10 +46,6 @@ const state = reactive({
       value: 100,
     },
   ],
-  filter: {
-    grayscale: 0,
-    brightness: 100,
-  },
   style: {},
 });
 // ===================== 生命周期 =====================
@@ -70,8 +66,6 @@ function choose() {
     sourceType: ['album', 'camera'],
     camera: 'back',
     success: (res: IObject) => {
-      console.log('res', res);
-      console.log(res.tempFiles[0].tempFilePath);
       tempFilePath.value = res.tempFiles[0].tempFilePath;
     },
   });
@@ -90,16 +84,6 @@ function ItemStyle(index: number) {
 
 function sliderChange(e: IObject) {
   state.editor[activeItem.value].value = e.detail.value;
-  switch (activeItem.value) {
-    case 0:
-      state.filter.grayscale = e.detail.value;
-      break;
-    case 1:
-      state.filter.brightness = e.detail.value;
-      break;
-    default:
-      break;
-  }
 }
 </script>
 
@@ -113,7 +97,7 @@ function sliderChange(e: IObject) {
 }
 .photo {
   height: 80vh;
-  filter: v-bind("'grayscale('+state.filter.grayscale+'%)'") v-bind("'brightness('+state.filter.brightness+'%)'");
+  filter: v-bind("'grayscale('+state.editor[0].value +'%)'") v-bind("'brightness('+state.editor[1].value+'%)'");
 }
 .editor::-webkit-scrollbar {
   display: none;

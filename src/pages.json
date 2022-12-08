@@ -122,6 +122,12 @@
 					}
 				},
 				{
+					"path": "testPage/layout",
+					"style": {
+						"navigationStyle": "custom"
+					}
+				},
+				{
 					"path": "tools/BuddhaBless/BuddhaBless",
 					"style": {
 						"navigationBarTitleText": "电子木鱼",
@@ -155,17 +161,12 @@
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "@navBgColor",
 		"backgroundColor": "@navBgColor",
-		"usingComponents": {
-			"van-tab": "/wxcomponents/vant-weapp/dist/tab/index",
-			"van-tabs": "/wxcomponents/vant-weapp/dist/tabs/index",
-			"van-button": "/wxcomponents/vant-weapp/dist/button/index",
-			"van-icon": "/wxcomponents/vant-weapp/dist/icon/index"
-		}
+		"usingComponents": {}
 	},
 	"easycom": {
 		"autoscan": true,
 		"custom": {
-			// "^uni-(.*)": "@/components/uni-$1.vue", // 匹配components目录内的vue文件
+			// "^(.*)": "@/components/$1/$1.vue" // 匹配components目录内的vue文件
 		}
 	}
 }

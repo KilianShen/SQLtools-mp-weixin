@@ -1,7 +1,6 @@
 <template>
   <button @click="chooseMedia">chooseMedia</button>
-  <text>{{ tempFilePath }}</text>
-  <image :src="tempFilePath"></image>
+  <image :src="tempFilePath" mode="aspectFit" style="border: 1px solid #999" show-menu-by-longpress></image>
 </template>
 
 <script lang="ts" setup>
@@ -31,16 +30,9 @@ function chooseMedia() {
         src: res.tempFiles[0].tempFilePath, // 图片路径
         cropScale: '1:1', // 裁剪比例
         success: (res: IObject) => {
-          console.log('res', res.tempFilePath);
+          console.log('res', res);
           tempFilePath.value = res.tempFilePath;
-          // console.log("tempFilePath", tempFilePath);
           console.log('tempFilePath.value', tempFilePath.value);
-          // wx.getImageInfo({
-          //   src: tempFilePath.value,
-          //   success: (res: IObject) => {
-          //     console.log('getImageInfo', res)
-          //   }
-          // })
           // wx.saveImageToPhotosAlbum({
           //   filePath: tempFilePath.value,
           //   success: (res: IObject) => {
