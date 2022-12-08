@@ -9,22 +9,24 @@
           </view>
         </template>
         <text class="item_desc">{{ item.desc }}</text>
-        <view slot="actions" class="card-actions">
-          <view class="card-actions-item">
-            <CustomShareButton :shareData="item">
-              <uni-icons type="redo" size="20" color="#999"></uni-icons>
-              <text class="card-actions-item-text">分享</text>
-            </CustomShareButton>
+        <template v-slot:actions>
+          <view class="card-actions">
+            <view class="card-actions-item">
+              <CustomShareButton :shareData="item">
+                <uni-icons type="redo" size="20" color="#999"></uni-icons>
+                <text class="card-actions-item-text">分享</text>
+              </CustomShareButton>
+            </view>
+            <view class="card-actions-item">
+              <uni-icons type="heart" size="20" color="#999"></uni-icons>
+              <text class="card-actions-item-text">点赞</text>
+            </view>
+            <view class="card-actions-item">
+              <uni-icons type="chatbubble" size="20" color="#999"></uni-icons>
+              <text class="card-actions-item-text">评论</text>
+            </view>
           </view>
-          <view class="card-actions-item">
-            <uni-icons type="heart" size="20" color="#999"></uni-icons>
-            <text class="card-actions-item-text">点赞</text>
-          </view>
-          <view class="card-actions-item">
-            <uni-icons type="chatbubble" size="20" color="#999"></uni-icons>
-            <text class="card-actions-item-text">评论</text>
-          </view>
-        </view>
+        </template>
       </uni-card>
     </view>
   </CustomScrollList>

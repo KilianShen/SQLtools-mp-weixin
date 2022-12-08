@@ -150,7 +150,7 @@
 			border-radius: 4px;
 			.uni-card__cover-image {
 				flex: 1;
-				// width: 100%;
+				width: 100%;
 				/* #ifndef APP-PLUS */
 				vertical-align: middle;
 				/* #endif */
