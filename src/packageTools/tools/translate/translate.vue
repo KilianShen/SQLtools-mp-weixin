@@ -16,6 +16,7 @@ import { onMounted, ref, Ref, reactive, getCurrentInstance, ComponentInternalIns
 import { onLoad } from '@dcloudio/uni-app';
 import { MD5 } from 'crypto-js';
 import appUtils from '@/utils/appUtils';
+import emitter from '@/utils/emitter';
 // ===================== 私有属性 =====================
 const appid = '20220813001304956';
 const key = 'gvy53DUYiqwEXdhLr845';
@@ -35,7 +36,7 @@ onLoad((pageParams: any) => {
 });
 
 onMounted(() => {
-  appContext.config.globalProperties.$mitt.on('langSelt', (data: any) => {
+  emitter.on('langSelt', (data: any) => {
     if (data.type === 'from') {
       fromName.value = data.name;
       fromCode.value = data.code;
@@ -45,12 +46,12 @@ onMounted(() => {
     }
   });
   /**给默认值 */
-  appContext.config.globalProperties.$mitt.emit('langSelt', { name: '中文', code: 'zh', type: 'from' });
-  appContext.config.globalProperties.$mitt.emit('langSelt', { name: '英语', code: 'en', type: 'to' });
+  emitter.emit('langSelt', { name: '中文', code: 'zh', type: 'from' });
+  emitter.emit('langSelt', { name: '英语', code: 'en', type: 'to' });
 });
 
 onBeforeMount(() => {
-  appContext.config.globalProperties.$mitt.off('langSelt');
+  emitter.off('langSelt');
 });
 
 // ===================== 私有方法 =====================

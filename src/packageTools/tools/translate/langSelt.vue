@@ -10,6 +10,7 @@
 import { onMounted, reactive, getCurrentInstance, ComponentInternalInstance } from 'vue';
 import { onLoad } from '@dcloudio/uni-app';
 import appUtils from '@/utils/appUtils';
+import emitter from '@/utils/emitter';
 // ===================== 私有属性 =====================
 let pageParams: IObject = {};
 const langMap: IObject[] = [
@@ -43,7 +44,6 @@ const langMap: IObject[] = [
   { name: '繁体中文', code: 'cht' },
   { name: '越南语', code: 'vie' },
 ];
-const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 // ===================== 生命周期 =====================
 onLoad((d) => {
   console.info('页面参数:', d);
@@ -53,7 +53,7 @@ onLoad((d) => {
 onMounted(() => {});
 // ===================== 私有方法 =====================
 function selectLang(lang: IObject) {
-  appContext.config.globalProperties.$mitt.emit('langSelt', { ...lang, type: pageParams.type });
+  emitter.emit('langSelt', { ...lang, type: pageParams.type });
   appUtils.back();
 }
 </script>
