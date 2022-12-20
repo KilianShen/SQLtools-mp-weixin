@@ -46,7 +46,6 @@ import { onMounted, reactive, ref, toRaw } from 'vue';
 import { onLoad, onShow } from '@dcloudio/uni-app';
 import Mock from 'mockjs';
 import CustomPopover from '@/components/CustomPopover/CustomPopover.vue';
-import Router from '@/utils/module/Router';
 import appUtils from '@/utils/appUtils';
 import { mainStore } from '@/store';
 // ===================== 私有属性 =====================

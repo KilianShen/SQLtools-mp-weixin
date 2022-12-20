@@ -1,7 +1,7 @@
-import Router from "./module/Router";
-import Basic from "./module/Basic";
-import Request from "./module/Request";
-import log from './module/log'
+import Router from './module/Router';
+import Basic from './module/Basic';
+import Request from './module/Request';
+import log from './module/log';
 const appUtils = {
   // 基础功能
   ...Basic,
@@ -10,7 +10,7 @@ const appUtils = {
   // 发起请求
   ...Request,
   // 实时日志管理器
-  log
+  log,
 };
 
 export default appUtils;
