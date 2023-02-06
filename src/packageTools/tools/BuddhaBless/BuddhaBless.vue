@@ -41,7 +41,7 @@ function click() {
 }
 
 function animation() {
-  var _animation = wx.createAnimation({
+  var _animation = uni.createAnimation({
     duration: 100,
     timingFunction: 'ease',
     transformOrigin: '50% 50%',
@@ -51,7 +51,7 @@ function animation() {
   state.animationData = _animation.export();
 
   setTimeout(() => {
-    var _animation2 = wx.createAnimation({
+    var _animation2 = uni.createAnimation({
       duration: 0,
       timingFunction: 'step-end',
       transformOrigin: '50% 50%',
@@ -63,7 +63,7 @@ function animation() {
 
 function playAudio() {
   console.log('play');
-  const innerAudioContext = wx.createInnerAudioContext({
+  const innerAudioContext = uni.createInnerAudioContext({
     // 是否使用 WebAudio 作为底层音频驱动，默认关闭。对于短音频、播放频繁的音频建议开启此选项，开启后将获得更优的性能表现。由于开启此选项后也会带来一定的内存增长，因此对于长音频建议关闭此选项
     useWebAudioImplement: true,
   });

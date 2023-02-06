@@ -86,7 +86,7 @@ function delTag(idx: number) {
 }
 
 function delAll() {
-  wx.showModal({
+  uni.showModal({
     title: '提示',
     content: '确认删除所有字条？',
     success: (res: IObject) => {

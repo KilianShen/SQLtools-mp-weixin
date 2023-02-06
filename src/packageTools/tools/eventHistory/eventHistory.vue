@@ -31,7 +31,7 @@ onMounted(() => {
 });
 // ===================== 私有方法 =====================
 function eventsOnHistory(month: string, day: string) {
-  wx.showLoading({
+  uni.showLoading({
     title: '加载中',
     mask: true,
   });
@@ -42,7 +42,7 @@ function eventsOnHistory(month: string, day: string) {
       // console.log('eventList\n', JSON.stringify(state.eventList, null, 2));
     },
     complete: () => {
-      wx.hideLoading();
+      uni.hideLoading();
     },
   });
 }

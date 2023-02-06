@@ -12,7 +12,7 @@ import Mock from 'mockjs';
 // ===================== 生命周期 =====================
 onLoad((pageParams) => {
   console.info('页面参数:', pageParams);
-  wx.showShareMenu({
+  uni.showShareMenu({
     withShareTicket: false,
     menus: ['shareAppMessage', 'shareTimeline'],
   });

@@ -107,7 +107,7 @@ export default defineComponent({
       if (!path) {
         return;
       }
-      wx.navigateTo({
+      uni.navigateTo({
         url: `${path}`,
         success: () => {
           console.info('navigateToSuccess! PageStack>>', ...getCurrentPages());

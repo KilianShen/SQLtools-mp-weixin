@@ -83,7 +83,7 @@ async function create() {
 }
 
 function preview() {
-  wx.previewImage({
+  uni.previewImage({
     current: '', // 当前显示图片的 http 链接
     urls: [TempFilePath.value], // 需要预览的图片 http 链接列表
   });

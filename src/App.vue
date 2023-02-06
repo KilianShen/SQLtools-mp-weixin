@@ -12,9 +12,9 @@ onLaunch(() => {
     },
   });
 
-  const updateManager = wx.getUpdateManager();
+  const updateManager = uni.getUpdateManager();
   updateManager.onUpdateReady(function () {
-    wx.showModal({
+    uni.showModal({
       title: '更新提示',
       content: '新版本已经准备好，是否重启应用？',
       success: (res: IObject) => {
@@ -29,7 +29,7 @@ onLaunch(() => {
   const listtener = (res: any) => {
     console.log('wx-themeDdark', res);
   };
-  wx.onThemeChange(listtener);
+  uni.onThemeChange(listtener);
 
   // uni监听系统主题状态变化
   uni.onThemeChange((res) => {

@@ -53,17 +53,17 @@ const BMap: IObject = new BMapWX({
 // ===================== 生命周期 =====================
 onLoad((pageParams) => {
   console.info('页面参数:', pageParams);
-  wx.getSetting({
+  uni.getSetting({
     success: (res: IObject) => {
       console.log('authSetting', res);
       if (!res.authSetting['scope.userLocation']) {
         console.info('没授权');
-        wx.authorize({
+        uni.authorize({
           scope: 'scope.userLocation',
           success: () => {},
           fail: (err: IObject) => {
             console.error('err:', err);
-            wx.showToast({
+            uni.showToast({
               title: '请检查位置权限是否开启',
               icon: 'none',
               duration: 2000,

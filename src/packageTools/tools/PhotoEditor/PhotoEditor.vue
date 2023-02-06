@@ -60,7 +60,7 @@ function choose() {
   if (tempFilePath.value) {
     return;
   }
-  wx.chooseMedia({
+  uni.chooseMedia({
     count: 1,
     mediaType: ['image'],
     sourceType: ['album', 'camera'],

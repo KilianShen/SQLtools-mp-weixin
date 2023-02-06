@@ -23,7 +23,7 @@ import appUtils from '@/utils/appUtils';
 import Tabs from '@/components/Tabs/Tabs.vue';
 // ===================== 私有属性 =====================
 let current = ref(0);
-let windowHeight: number = wx.getWindowInfo().windowHeight - 44;
+let windowHeight: number = uni.getWindowInfo().windowHeight - 44;
 // ===================== 生命周期 =====================
 onLoad((pageParams) => {
   console.info('页面参数:', pageParams);

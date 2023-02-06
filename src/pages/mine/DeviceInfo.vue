@@ -81,23 +81,23 @@ onLoad((pageParams) => {
       console.log('uni.getSystemInfo', res);
     },
   });
-  wx.getSystemInfo({
+  uni.getSystemInfo({
     success: (res: IObject) => {
       state.systemInfo = res;
       console.log('getSystemInfo\n', JSON.stringify(res, null, 2));
     },
   });
-  state.appBaseInfo = wx.getAppBaseInfo();
+  state.appBaseInfo = uni.getAppBaseInfo();
   console.log('appBaseInfo\n', JSON.stringify(state.appBaseInfo, null, 2));
-  state.appAuthorizeSetting = wx.getAppAuthorizeSetting();
-  wx.getNetworkType({
+  state.appAuthorizeSetting = uni.getAppAuthorizeSetting();
+  uni.getNetworkType({
     success: (res: IObject) => {
       state.networkType = res.networkType;
     },
   });
-  state.MenuButtonInfo = wx.getMenuButtonBoundingClientRect();
+  state.MenuButtonInfo = uni.getMenuButtonBoundingClientRect();
   console.log('state.MenuButtonInfo', state.MenuButtonInfo);
-  state.version = wx.getAccountInfoSync().miniProgram.version || wx.getAccountInfoSync().miniProgram.envVersion;
+  state.version = uni.getAccountInfoSync().miniProgram.version || uni.getAccountInfoSync().miniProgram.envVersion;
 });
 
 onMounted(() => {});

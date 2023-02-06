@@ -30,7 +30,7 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   reqUrl: '',
-  height: wx.getWindowInfo().windowHeight - 44,
+  height: uni.getWindowInfo().windowHeight - 44,
 });
 const store: IObject = mainStore().systemInfo;
 let safeAreaBInsetsBottom = toRaw(store).safeAreaInsets.bottom;

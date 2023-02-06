@@ -63,14 +63,14 @@ function formSubmit(e: IObject) {
   });
   console.log('_items', _items);
   if (!formdata.title) {
-    wx.showToast({
+    uni.showToast({
       title: '标题不可为空',
       icon: 'none',
     });
     return;
   }
   if (_items.length < 2) {
-    wx.showToast({
+    uni.showToast({
       title: '至少输入两个选项',
       icon: 'none',
     });
@@ -83,13 +83,13 @@ function formSubmit(e: IObject) {
   } else {
     mainStore().turnTableList[parseInt(state.pageParams.activeIndex)] = state.TemporaryList;
   }
-  wx.setStorageSync('turnTableList', mainStore().turnTableList);
+  uni.setStorageSync('turnTableList', mainStore().turnTableList);
   appUtils.back();
   return;
 }
 
 function delTurntable() {
-  wx.showModal({
+  uni.showModal({
     title: '提示',
     content: '确认删除此转盘？',
     success: (res: IObject) => {
@@ -97,7 +97,7 @@ function delTurntable() {
         mainStore().turnTableList = mainStore().turnTableList.filter(
           (item: IObject[], index: number) => index !== parseInt(state.pageParams.activeIndex)
         );
-        wx.setStorageSync('turnTableList', mainStore().turnTableList);
+        uni.setStorageSync('turnTableList', mainStore().turnTableList);
         appUtils.back();
       } else if (res.cancel) {
         console.log('用户点击取消');
