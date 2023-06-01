@@ -27,7 +27,6 @@ import { onMounted, reactive, toRaw } from 'vue';
 import { onLoad } from '@dcloudio/uni-app';
 import { mainStore } from '@/store';
 import appUtils from '@/utils/appUtils';
-import _ from 'lodash';
 
 // 页面参数
 interface IpageParams {

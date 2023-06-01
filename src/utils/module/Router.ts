@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { isEmpty } from 'lodash-es';
 
 const Router = {
     /**
@@ -67,7 +67,7 @@ const Router = {
             };
             const route = d.route || lastNav.route;
             delete opts.route;
-            let p = _.isEmpty(d) ? `${route}` : `${route}?${Object.keys(opts)
+            let p = isEmpty(d) ? `${route}` : `${route}?${Object.keys(opts)
                 .map((k) => {
                     return `${k}=${opts[k]}`;
                 })

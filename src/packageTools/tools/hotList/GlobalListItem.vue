@@ -14,7 +14,7 @@ import { onMounted, reactive, ref, toRaw } from 'vue';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import zh_cn from 'dayjs/locale/zh-cn';
-import { isEmpty } from 'lodash';
+import { isEmpty } from 'lodash-es';
 dayjs.extend(relativeTime);
 dayjs.locale(zh_cn);
 

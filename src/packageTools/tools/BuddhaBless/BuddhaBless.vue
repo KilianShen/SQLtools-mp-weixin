@@ -15,7 +15,7 @@
 <script lang="ts" setup>
 import { onMounted, reactive, Ref, ref } from 'vue';
 import { onLoad } from '@dcloudio/uni-app';
-import _ from 'lodash';
+import { throttle, DebouncedFunc } from 'lodash-es';
 
 // ===================== 私有属性 =====================
 const state: IObject = reactive({
@@ -25,13 +25,13 @@ const state: IObject = reactive({
 
 let count = ref(0);
 
-const throttledClick: _.DebouncedFunc<() => void> = _.throttle(click, 200);
+const throttledClick: DebouncedFunc<() => void> = throttle(click, 200);
 // ===================== 生命周期 =====================
 onLoad((pageParams) => {
   console.info('页面参数:', pageParams);
 });
 
-onMounted(() => {});
+onMounted(() => { });
 
 //节流防抖
 function click() {
@@ -63,10 +63,7 @@ function animation() {
 
 function playAudio() {
   console.log('play');
-  const innerAudioContext = uni.createInnerAudioContext({
-    // 是否使用 WebAudio 作为底层音频驱动，默认关闭。对于短音频、播放频繁的音频建议开启此选项，开启后将获得更优的性能表现。由于开启此选项后也会带来一定的内存增长，因此对于长音频建议关闭此选项
-    useWebAudioImplement: true,
-  });
+  const innerAudioContext = uni.createInnerAudioContext();
   innerAudioContext.autoplay = true;
   let audioSrc = '/static/3692.mp3';
   innerAudioContext.src = audioSrc;
@@ -81,6 +78,7 @@ function playAudio() {
   height: 100vh;
   background: #000;
 }
+
 .count {
   display: flex;
   flex-direction: row-reverse;
@@ -102,88 +100,86 @@ function playAudio() {
   height: 385rpx;
   background: #fff;
   // 画图
-  clip-path: polygon(
-    60% 0%,
-    65% 1%,
-    70% 2%,
-    81% 7%,
-    85% 12%,
-    88% 15%,
-    90% 19%,
-    91% 20%,
-    92% 22%,
-    93% 24%,
-    94% 26%,
-    95% 28%,
-    94% 30%,
-    92% 32%,
-    88% 34%,
-    80% 36%,
-    70% 39%,
-    65% 40%,
-    60% 42%,
-    55% 43%,
-    50% 45%,
-    45% 46%,
-    40% 48%,
-    35% 51%,
-    30% 55%,
-    29% 57%,
-    28.5% 59%,
-    29% 60%,
-    30% 62%,
-    32% 64%,
-    34% 64%,
-    36% 63%,
-    40% 60%,
-    50% 53%,
-    60% 47%,
-    65% 44%,
-    70% 42%,
-    80% 39%,
-    90% 36.5%,
-    95% 37%,
-    96% 38%,
-    98% 42%,
-    99% 48%,
-    99.5% 60%,
-    98.5% 70%,
-    97% 75%,
-    95% 80%,
-    89% 89%,
-    86% 92%,
-    75% 96%,
-    65% 98%,
-    60% 99%,
-    55% 99.5%,
-    50% 99%,
-    47% 98.5%,
-    40% 97%,
-    30% 93.5%,
-    25% 91.5%,
-    20% 90%,
-    15% 88%,
-    10% 87%,
-    5% 88%,
-    3% 86%,
-    2% 85%,
-    1% 82%,
-    0% 76%,
-    1% 74%,
-    3% 70%,
-    5% 67%,
-    8% 62%,
-    12% 50%,
-    15% 43%,
-    20% 34%,
-    25% 25%,
-    30% 17%,
-    35% 12%,
-    40% 6%,
-    45% 3%,
-    50% 2%,
-    60% 0%
-  );
+  clip-path: polygon(60% 0%,
+      65% 1%,
+      70% 2%,
+      81% 7%,
+      85% 12%,
+      88% 15%,
+      90% 19%,
+      91% 20%,
+      92% 22%,
+      93% 24%,
+      94% 26%,
+      95% 28%,
+      94% 30%,
+      92% 32%,
+      88% 34%,
+      80% 36%,
+      70% 39%,
+      65% 40%,
+      60% 42%,
+      55% 43%,
+      50% 45%,
+      45% 46%,
+      40% 48%,
+      35% 51%,
+      30% 55%,
+      29% 57%,
+      28.5% 59%,
+      29% 60%,
+      30% 62%,
+      32% 64%,
+      34% 64%,
+      36% 63%,
+      40% 60%,
+      50% 53%,
+      60% 47%,
+      65% 44%,
+      70% 42%,
+      80% 39%,
+      90% 36.5%,
+      95% 37%,
+      96% 38%,
+      98% 42%,
+      99% 48%,
+      99.5% 60%,
+      98.5% 70%,
+      97% 75%,
+      95% 80%,
+      89% 89%,
+      86% 92%,
+      75% 96%,
+      65% 98%,
+      60% 99%,
+      55% 99.5%,
+      50% 99%,
+      47% 98.5%,
+      40% 97%,
+      30% 93.5%,
+      25% 91.5%,
+      20% 90%,
+      15% 88%,
+      10% 87%,
+      5% 88%,
+      3% 86%,
+      2% 85%,
+      1% 82%,
+      0% 76%,
+      1% 74%,
+      3% 70%,
+      5% 67%,
+      8% 62%,
+      12% 50%,
+      15% 43%,
+      20% 34%,
+      25% 25%,
+      30% 17%,
+      35% 12%,
+      40% 6%,
+      45% 3%,
+      50% 2%,
+      60% 0%);
 }
 
 .mallet {

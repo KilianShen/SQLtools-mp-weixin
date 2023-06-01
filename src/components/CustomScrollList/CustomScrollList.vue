@@ -9,8 +9,8 @@
     @refresherrefresh="refresh"
     @scroll="scroll"
   >
-    <slot :data="state.data" v-if="!_.isEmpty(state.data)"></slot>
-    <uni-load-more :status="_.isEmpty(state.data) ? 'loading' : 'no-more'"></uni-load-more>
+    <slot :data="state.data" v-if="!isEmpty(state.data)"></slot>
+    <uni-load-more :status="isEmpty(state.data) ? 'loading' : 'no-more'"></uni-load-more>
   </scroll-view>
   <view class="pageScrollTo" @click="pageScrollTo()" v-show="oldScrollTop > 1000">
     <uni-icons class="pageScrollTo_icon" type="top" size="30"></uni-icons>
@@ -20,7 +20,7 @@
 <script lang="ts" setup>
 import appUtils from '@/utils/appUtils';
 import { nextTick, onMounted, reactive, ref, toRaw } from 'vue';
-import _ from 'lodash';
+import { isEmpty } from 'lodash-es';
 import { mainStore } from '@/store';
 
 interface Props {
